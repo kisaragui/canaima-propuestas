@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'postulacion',
     'rest_framework',
+    'statusSeguimiento',
 ]
 
 MIDDLEWARE_CLASSES = [

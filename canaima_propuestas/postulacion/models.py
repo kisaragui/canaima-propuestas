@@ -7,7 +7,9 @@ class Package(models.Model):
 	repository = models.URLField('url repositorio del proyecto', max_length=100, unique=True)
 	name_package = models.CharField('nombre paquete', max_length=50, unique=True)
 	description_package = models.CharField('descripcion paquete', max_length=50)
+	status = models.CharField('estatus del paquete', max_length=50, default='postulado')
 	email = models.EmailField('correo del postulador', max_length=50)
+	fecha = models.DateField('fecha de creacion del paquete', auto_now_add=True, auto_now=False)
 	#owner = models.ForeignKey('auth.User', related_name='packages')
 
 	class Meta:
@@ -21,13 +23,14 @@ class Package(models.Model):
 	def __str__(self):
 		return self.basename()
 
-class Package_status(models.Model):
 
-	package_id = models.ForeignKey(Package, on_delete=models.CASCADE)
-	status = models.CharField('estatus del paquete', max_length=50, default='Recibido')
-
-	class Meta:
-		ordering = ('package_id',)
-		
-	def __str__(self):
-		return self.package_id()
+#class Package_status(models.Model):
+#
+#	package_id = models.ForeignKey(Package, on_delete=models.CASCADE)
+#	status = models.CharField('estatus del paquete', max_length=50, default='postulado')
+#
+#	class Meta:
+#		ordering = ('package_id',)
+#		
+#	def __str__(self):
+#		return self.package_id()

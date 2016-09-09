@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from postulacion.models import Package, Package_status
+from postulacion.models import Package
 
 class PackageSerializer(serializers.ModelSerializer):
     
@@ -8,13 +8,13 @@ class PackageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Package
-        fields = ('id', 'repository', 'name_package', 'description_package', 'email') #, 'owner')
+        fields = ('id', 'repository', 'name_package', 'description_package','status', 'email', "fecha") #, 'owner')
 
-class PackageStatusSerializer(serializers.ModelSerializer):
-    
-    class Meta:
-        model = Package_status
-        fields = ('package_id', 'status')
+#class PackageStatusSerializer(serializers.ModelSerializer):
+#   
+#    class Meta:
+#        model = Package_status
+#        fields = ('package_id', 'status')
 
 
 class UserSerializer(serializers.ModelSerializer):
