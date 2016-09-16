@@ -8,8 +8,8 @@ class PackageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Package
-        fields = ('id', 'repository', 'name_package', 'description_package','status', 'email', "fecha") #, 'owner')
-
+        fields = ('id', 'repository', 'name_package', 'description_package' , 'email', "fecha") #, 'owner')
+        
 #class PackageStatusSerializer(serializers.ModelSerializer):
 #   
 #    class Meta:
