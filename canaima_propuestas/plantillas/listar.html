@@ -1,0 +1,36 @@
+  {% extends "plantilla.html" %} 
+
+{% block title %} Postulacion {% endblock %}
+
+{% block content %} 
+<div class="col s6 offset-s3 center-align">
+    <h3> lista de paquetes</h3>
+</div>
+  <div class=" tabla">
+	<table class="bordered highlight">
+        <thead> 
+          	<tr>
+              <th data-field="name">Repositorio</th>
+              <th data-field="name">Nombre</th>
+              <th data-field="name">Descripción</th>
+              <th data-field="name">status</th>
+              <th data-field="name">correo</th>
+              <th data-field="name">fecha</th> 
+          	</tr>
+        </thead>
+        <tbody >
+    	{% for package in object_list %}
+          <tr>
+
+            <td><a href="#!"> {{ package.repository }}</a></td>
+            <td><a href="#!">{{ package.name_package }}</a></td>
+            <td><a href="#!">{{ package.description_package }}</a></td>
+            <td><a href="#!">{{ package.status }}</a></td>
+            <td><a href="#!">{{ package.email }}</a></td>
+            <td><a href="#!">{{ package.fecha }}</a></td>
+          </tr>
+        {% endfor %} 
+        </tbody>
+    </table> 	
+  </div>
+{% endblock %}

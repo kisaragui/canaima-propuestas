@@ -1,6 +1,13 @@
 from __future__ import unicode_literals
 from django.db import models
-import os
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+from statusSeguimiento.models import Historial
+
+def guardar_historial(sender, instance, created, **kwargs):
+
+	historial= Historial(name_package=instance.name_package)
+	historial.save()
 
 class Package(models.Model):
 
@@ -10,27 +17,12 @@ class Package(models.Model):
 	status = models.CharField('estatus del paquete', max_length=50, default='postulado')
 	email = models.EmailField('correo del postulador', max_length=50)
 	fecha = models.DateField('fecha de creacion del paquete', auto_now_add=True, auto_now=False)
-	#owner = models.ForeignKey('auth.User', related_name='packages')
-
+	
 	class Meta:
 		ordering = ('name_package',)
 			
-	#Funcion para obtener el nombre del paquete mediante la URL
-	def basename(self): 
-		basename, extension = os.path.splitext(self.repository)
-		return os.path.basename(basename)
-
 	def __str__(self):
 		return self.basename()
 
-
-#class Package_status(models.Model):
-#
-#	package_id = models.ForeignKey(Package, on_delete=models.CASCADE)
-#	status = models.CharField('estatus del paquete', max_length=50, default='postulado')
-#
-#	class Meta:
-#		ordering = ('package_id',)
-#		
-#	def __str__(self):
-#		return self.package_id()
+post_save.connect(guardar_historial, sender=Package)
+	#Historial.save()

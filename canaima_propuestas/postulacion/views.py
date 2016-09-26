@@ -1,39 +1,59 @@
-from rest_framework import status
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from django.contrib.auth.models import User
-from rest_framework import serializers
-from rest_framework import permissions
-from rest_framework import renderers
-from postulacion.serializers import UserSerializer
-from postulacion.permissions import IsOwnerOrReadOnly
 from postulacion.models import Package
-from postulacion.serializers import PackageSerializer
+from django.shortcuts import render
+from django.views.generic import CreateView, ListView
+from django.core.urlresolvers import reverse_lazy
 from statusSeguimiento.models import Historial
-from statusSeguimiento.serializers import HistorialSerializer
-from rest_framework.renderers import TemplateHTMLRenderer
-from rest_framework.views import APIView
+from postulacion.forms import PackageForm
+from statusSeguimiento.forms import HistorialForm
+from django.http import HttpResponseRedirect
 
+class PackageList(ListView):
 
-#Vista que permite listar y crear las postulaciones
-class PackageList(APIView):
-	renderer_classes = [TemplateHTMLRenderer]
-	template_name="postulacion.html"
-	models = Package
+	template_name="listar.html"
+	model = Package
+
+class PackageCreate(CreateView):
 	
-	def get(self, request, format=None):
-		package = Package.objects.all()
-		serializer = PackageSerializer(Package, many=True)
-		return Response({ "PackageSerializer": PackageSerializer })
+	template_name="postulacion.html"
+	model = Package
+	form_class = PackageForm
+	success_url = reverse_lazy("listar")	
+	segundo_form_class = HistorialForm
 
-	def post(self, request, format=None):
-		package = Package.objects.all()
-		serializer = PackageSerializer(Package, data=request.data)
-		if serializer.is_valid(): 
-			serializer.save()
-		 	return Response(serializer.data)
+	def get_context_data(self, **kwargs):
+		context = super(PackageCreate, self).get_context_data(**kwargs)
+		if "form" not in context:
+			context["form"] = self.form_class(self.request.GET)
+		return context
+
+	def post(self, request, *args, **kwargs):
+		self.object = self.get_object
+		form = self.form_class(self.request.POST)		
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect(self.get_success_url("listar"))
 		else:
-			return Response({ "PackageSerializer": PackageSerializer,'package': package })
+		 	return self.render_to_response(self.get_context_data(form=form))
+
+		#datos2.id_name_package = datos1.id_name_package
+		#datos2.save()
+
+
+	#context_object_name = "paquetes"
+	
+
+
+	# def get(self, request, format=None):
+	# 	package = Package.objects.all()
+	# 	serializer = PackageSerializer(Package, many=True)
+	# 	return Response(serializer.data)
+
+	# def post(self, request, format=None):
+	# 	package = Package.objects.all()
+	# 	serializer = PackageSerializer(Package, data=request.data)
+	# 	if serializer.is_valid(): 
+	# 		serializer.save()
+	# 	 	return Response(serializer.data)
 	
 
 	#permission_classes = (permissions.IsAuthenticatedOrReadOnly,)

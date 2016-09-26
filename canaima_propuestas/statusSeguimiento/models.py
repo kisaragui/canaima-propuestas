@@ -1,6 +1,5 @@
 from __future__ import unicode_literals
 from django.db import models
-from postulacion.models import Package
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 # Create your models here.
@@ -13,8 +12,8 @@ OPTIONS_CHOICES=(
 	)	
 class Historial(models.Model):
 
-	name_package = models.ForeignKey(Package, max_length=50, on_delete=models.CASCADE)
-	fecha_actualizada = models.DateTimeField('fecha para actualizar del paquete', auto_now_add=False, auto_now=True)
+	name_package = models.CharField('nombre paquete', max_length=50, unique=True)
+	fecha_actualizada = models.DateTimeField('fecha para actualizar del paquete', auto_now=True)
 	status = models.CharField(max_length=50, choices=OPTIONS_CHOICES, default='postulado')
 	
 	class Meta:
