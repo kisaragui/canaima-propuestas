@@ -1,0 +1,31 @@
+  {% extends "plantilla.html" %} 
+
+{% block title %} postulacion {% endblock %}
+
+{% block content %} 
+  <div class="col s6 offset-s3 center-align">
+    <h3> {{ object.name_package }}</h3>
+  </div>
+  <div class="row">
+    <div class="col s5  right-align">
+      <ul >
+        <li><p> Repositorio:               </p></li>
+        <li><p> Nombre del paquete:       </p></li>
+        <li><p> Descripcion del paquete: </p></li>
+        <li><p> Status del paquete:       </p></li>
+        <li><p> Correo Eleclionico:        </p></li>
+        <li><p> Fecha creado:              </p></li>
+      </ul>
+    </div>
+  <div class=" col s7 ">
+      <ul>
+        <li><p>{{ object.repository }}</p></li>
+        <li><p>{{ object.name_package }}</p></li>
+        <li><p>{{ object.description_package }}</p></li>
+        <li><p>{{ object.status }}</p></li>
+        <li><p>{{ object.email }}</p></li>
+        <li><p>{{ object.fecha }}</p></li>
+     </ul>
+  </div>
+</div>
+{% endblock %}

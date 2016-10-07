@@ -4,24 +4,29 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 # Create your models here.
 
-OPTIONS_CHOICES=(
-	('postulado','postulado'),
-	('evaluado','evaluado'),
-	('aceptado','aceptado'),
-	('rechazado','rechazado'),
+postulado = "p"
+evaluado= "e"
+aceptado= "a"
+rechazado= "r"
+
+STATUS=(
+	(postulado,'postulado'),
+	(evaluado,'evaluado'),
+	(aceptado,'aceptado'),
+	(rechazado,'rechazado'),
 	)	
 class Historial(models.Model):
 
 	name_package = models.CharField('nombre paquete', max_length=50, unique=True)
 	fecha_actualizada = models.DateTimeField('fecha para actualizar del paquete', auto_now=True)
-	status = models.CharField(max_length=50, choices=OPTIONS_CHOICES, default='postulado')
+	status = models.CharField(max_length=2, choices=STATUS, default=postulado)
 	
 	class Meta:
 		ordering = ('fecha_actualizada',)
 		
 
 	def __str__(self):
-		return self.name_package()
+		return self.name_package
 
 
 	

@@ -4,9 +4,11 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from statusSeguimiento.models import Historial
 
+# funcion para guardar datos en el modelo Historial al guardar datos en el modelo Package
 def guardar_historial(sender, instance, created, **kwargs):
-
+	# cargando la instancia en el modelo Historial
 	historial= Historial(name_package=instance.name_package)
+	# guardando los datos instanciandos en el modelo Historial
 	historial.save()
 
 class Package(models.Model):
@@ -21,8 +23,8 @@ class Package(models.Model):
 	class Meta:
 		ordering = ('name_package',)
 			
-	def __str__(self):
-		return self.basename()
+	#def __str__(self):
+	#	return self.basename()
 
+# al guardar un dato en el modelo, dispara o envia esta Signal o Senial  para ejectutarla
 post_save.connect(guardar_historial, sender=Package)
-	#Historial.save()

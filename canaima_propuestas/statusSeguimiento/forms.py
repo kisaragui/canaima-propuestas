@@ -5,7 +5,7 @@ class HistorialForm(forms.ModelForm):
 	class Meta:
 		model = Historial
 		fields = [
-			'name_package', 
+			'name_package',
 			'status', 
 		]
 			
@@ -13,4 +13,6 @@ class HistorialForm(forms.ModelForm):
 			'name_package':'Nombre del Paquete', 
 			'status':'Status del Paquete', 
 		}
+
 		 
+		
