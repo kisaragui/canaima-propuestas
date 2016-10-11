@@ -8,7 +8,7 @@ class PackageForm(forms.ModelForm):
 			"repository", 
 			"name_package", 
 			"description_package", 
-			"email"
+			"email",
 		]
 		
 		label={

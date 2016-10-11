@@ -7,17 +7,17 @@
     <h3> {{ object.name_package }}</h3>
   </div>
   <div class="row">
-    <div class="col s5  right-align">
+    <div class="col s5 right-align">
       <ul >
-        <li><p> Repositorio:               </p></li>
-        <li><p> Nombre del paquete:       </p></li>
-        <li><p> Descripcion del paquete: </p></li>
-        <li><p> Status del paquete:       </p></li>
-        <li><p> Correo Eleclionico:        </p></li>
-        <li><p> Fecha creado:              </p></li>
+        <li><p>Repositorio:               </p></li>
+        <li><p>Nombre del paquete:       </p></li>
+        <li><p>Descripcion del paquete: </p></li>
+        <li><p>Status del paquete:       </p></li>
+        <li><p>Correo Eleclionico:        </p></li>
+        <li><p>Fecha creado:              </p></li>
       </ul>
     </div>
-  <div class=" col s7 ">
+  <div class="col s7 ">
       <ul>
         <li><p>{{ object.repository }}</p></li>
         <li><p>{{ object.name_package }}</p></li>
@@ -27,5 +27,28 @@
         <li><p>{{ object.fecha }}</p></li>
      </ul>
   </div>
-</div>
+  </div>
+  <div class="col s6 offset-s3 center-align">
+    <h3> Historial del Paquete</h3>
+  </div>
+  <div>
+    <table class="bordered highlight" >
+      <thead> 
+        <tr>
+          <th data-field="name">fecha de actualizacion</th> 
+          <th data-field="name">Nombre</th>
+          <th data-field="name"> Ultimo status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for detalle in detalle_list %}
+            <tr>
+                <td>{{ detalle.fecha_actualizada }}</td>
+                <td>{{ detalle.name_package }}</td>
+                <td>{{ detalle.get_status_display }}</td>
+            </tr>
+        {% endfor %} 
+      </tbody>
+    </table> 
+  </div>
 {% endblock %}

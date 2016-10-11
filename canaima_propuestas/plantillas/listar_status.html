@@ -23,13 +23,15 @@
                 <form action="" method="post">
                 {% csrf_token %}
                 
-                  <td>{{ historial.fecha_actualizada }}</td>
+                  <td>{{ historial.fecha_actualizada }}
+                  </td>
 
-                  <td><input type="hidden" name="name_package" value="{{ historial.name_package }}">
+                  <td>
+                  <input type="hidden" id="name_package" name="name_package" value="{{ historial.name_package }}">
                     {{ historial.name_package }}</td>
                   <td> 
                     <div class="col s6"> 
-                    <select  class="browser-default" id="id_status" name="status">
+                    <select  class="browser-default" id="status" name="status">
                       <option value="p" selected="selected">postulado</option>
                       <option value="e">evaluado</option>
                       <option value="a">aceptado</option>

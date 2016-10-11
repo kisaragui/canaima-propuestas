@@ -13,9 +13,9 @@ def guardar_historial(sender, instance, created, **kwargs):
 
 class Package(models.Model):
 
-	repository = models.URLField('url repositorio del proyecto', max_length=100, unique=True)
+	repository = models.URLField('url repositorio del proyecto', max_length=150, unique=True)
 	name_package = models.CharField('nombre paquete', max_length=50, unique=True)
-	description_package = models.CharField('descripcion paquete', max_length=50)
+	description_package = models.CharField('descripcion paquete', max_length=200)
 	status = models.CharField('estatus del paquete', max_length=50, default='postulado')
 	email = models.EmailField('correo del postulador', max_length=50)
 	fecha = models.DateField('fecha de creacion del paquete', auto_now_add=True, auto_now=False)

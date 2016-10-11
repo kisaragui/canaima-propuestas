@@ -17,18 +17,16 @@ class HistorialList(ListView, ProcessFormView, FormMixin):
 	success_url = reverse_lazy("listar_todo")
 	#context_object_name = 'package_list'	
 
-
-	def post(self, request, *args, **kwargs):
+	def post(self, request):
 		#almacenando en variables los datos enviandos por via POST
 		s = request.POST["status"]
 		n = request.POST["name_package"]
-		form = self.form_class({'name_package':n,'status':s})
-		
+		form = HistorialForm(request.POST)
 		if form.is_valid():
-			print form
-			return HttpResponse("listar_todo")
+			form.save()
+			return HttpResponseRedirect(self.get_success_url())
 		else:
-			return HttpResponse("listar_todo")	
+			return HttpResponseRedirect(self.get_success_url())
 		
 		
 		# validando los datos a actualizar
@@ -45,6 +43,14 @@ class HistorialList(ListView, ProcessFormView, FormMixin):
 			
 		return HttpResponse("listar_todo")
 
-class Historiallistar(ListView):
-    model = Historial
+class HistorialEnDetalle(ListView):
+
+    
     template_name = "listar_todo.html"
+
+    def get_context_data(self, request, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(HistorialEnDetalle, self).get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['detalle_list'] = Historial.objects.filter(name_package = kwargs["name_package"])
+        return context

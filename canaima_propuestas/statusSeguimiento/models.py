@@ -2,6 +2,8 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
+from django.utils import timezone
+import datetime
 # Create your models here.
 
 postulado = "p"
@@ -17,8 +19,8 @@ STATUS=(
 	)	
 class Historial(models.Model):
 
-	name_package = models.CharField('nombre paquete', max_length=50, unique=True)
-	fecha_actualizada = models.DateTimeField('fecha para actualizar del paquete', auto_now=True)
+	name_package = models.CharField('nombre paquete', max_length=50)
+	fecha_actualizada = models.DateTimeField(default=timezone.now)
 	status = models.CharField(max_length=2, choices=STATUS, default=postulado)
 	
 	class Meta:

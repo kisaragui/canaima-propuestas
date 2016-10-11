@@ -21,7 +21,7 @@
             <tr>
                 <td>{{ historial.fecha_actualizada }}</a></td>
                 <td>{{ historial.name_package }}</a></td>
-                <td>{{ historial.status }}</a></td>
+                <td>{{ historial.get_status_display }}</a></td>
             </tr>
         {% endfor %} 
           </tbody>
