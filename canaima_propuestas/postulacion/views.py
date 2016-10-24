@@ -12,6 +12,15 @@ class PackageDetail(DetailView):
 	# muestra los datos completos de los paquetes
 	model = Package
 	template_name = "detalle.html"	
+	
+	def get_context_data(self, *args, **kwargs):
+
+		pk = self.kwargs["pk"]
+		record = self.model.objects.get(id=pk)
+		context = super(PackageDetail, self).get_context_data(**kwargs)
+		detallado = Historial.objects.filter(name_package=record.name_package)
+		context['detalle_list'] = detallado
+		return context
 
 class PackageList(ListView):
 

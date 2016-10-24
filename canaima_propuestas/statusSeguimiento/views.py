@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import render
 from statusSeguimiento.models import Historial
 from postulacion.models import Package
 from django.views.generic import CreateView, ListView, UpdateView, DetailView, FormView
@@ -6,6 +6,8 @@ from django.views.generic.edit import ProcessFormView, FormMixin
 from django.core.urlresolvers import reverse_lazy
 from statusSeguimiento.forms import HistorialForm
 from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib import messages
+from django.db.models import Q
 # Create your views here.
 
 class HistorialList(ListView, ProcessFormView, FormMixin):
@@ -14,43 +16,37 @@ class HistorialList(ListView, ProcessFormView, FormMixin):
 	template_name="listar_status.html"
 	model = Historial
 	form_class = HistorialForm
-	success_url = reverse_lazy("listar_todo")
-	#context_object_name = 'package_list'	
+	success_url = reverse_lazy("listar_status")	
+
+	def get_context_data(self, **kwargs):
+	    context = super(HistorialList, self).get_context_data(**kwargs)
+	    context["listado_list"] = Historial.objects.all().distinct()
+	    return context
+
 
 	def post(self, request):
 		#almacenando en variables los datos enviandos por via POST
-		s = request.POST["status"]
-		n = request.POST["name_package"]
 		form = HistorialForm(request.POST)
+		# se valida los datos via POST
 		if form.is_valid():
-			form.save()
+			# almacenando en los variables sencillas los datos enviados via POST
+			s = form.cleaned_data['status']
+			n = form.cleaned_data["name_package"]
+			# se hace un filtro en un query con los datos anteriores y pregunta si existe en la base de datos
+			if self.model.objects.filter(name_package= n, status = s).exists():
+				# envia un mensaje de error
+				messages.add_message(request, messages.ERROR, 'Esta opcion ya existe.')
+			else:
+				# de lo contrario guarda el formulario
+				form.save()
+
 			return HttpResponseRedirect(self.get_success_url())
 		else:
-			return HttpResponseRedirect(self.get_success_url())
+
+			return HttpResponseRedirect("listar_todo")
 		
-		
-		# validando los datos a actualizar
-		#if form.is_valid():
-		#	traza = form.save(commit=False)
-		#	traza.name_package= request.POST["name_package"]
-		#	traza.status= request.POST["status"]
-		#	traza.save()
-			# guardando los datos 
-			#form.save()
-			# y por ultimo redireccionando a la lista de paquetes
-		#	return HttpResponseRedirect(self.get_success_url())
-		#else:
-			
-		return HttpResponse("listar_todo")
 
-class HistorialEnDetalle(ListView):
-
-    
-    template_name = "listar_todo.html"
-
-    def get_context_data(self, request, **kwargs):
-        # Call the base implementation first to get a context
-        context = super(HistorialEnDetalle, self).get_context_data(**kwargs)
-        # Add in a QuerySet of all the books
-        context['detalle_list'] = Historial.objects.filter(name_package = kwargs["name_package"])
-        return context
+class Historiallistar(ListView):
+ 
+	model = Historial
+	template_name = "listar_todo.html"

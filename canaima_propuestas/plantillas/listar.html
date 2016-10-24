@@ -20,10 +20,14 @@
           <tbody>
       	{% for package in object_list %}
             <tr>
-                <td><a href="{% url 'detalle' package.id %}">{{ package.repository }}</a></td>
-                <td><a href="{% url 'detalle' package.id %}">{{ package.name_package }}</a></td>
-                <td><a href="{% url 'detalle' package.id %}">{{ package.status }}</a></td>
-                <td><a href="{% url 'detalle' package.id %}">{{ package.fecha }}</a></td>
+                <td><a href="{% url 'detalle' pk=package.id %}">
+                {{ package.repository }}</a></td>
+                <td><a href="{% url 'detalle' pk=package.id %}">
+                {{ package.name_package }}</a></td>
+                <td><a href="{% url 'detalle' pk=package.id %}">
+                {{ package.status }}</a></td>
+                <td><a href="{% url 'detalle' pk=package.id %}">
+                {{ package.fecha }}</a></td>
             </tr>
         {% endfor %} 
           </tbody>

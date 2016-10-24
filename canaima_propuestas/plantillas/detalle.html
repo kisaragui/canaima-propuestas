@@ -28,27 +28,31 @@
      </ul>
   </div>
   </div>
+
   <div class="col s6 offset-s3 center-align">
-    <h3> Historial del Paquete</h3>
+    <h3> Historial del {{ object.name_package }}</h3>
   </div>
   <div>
+  <div class="row">
+    <div class="col s10 offset-1" >
     <table class="bordered highlight" >
       <thead> 
         <tr>
           <th data-field="name">fecha de actualizacion</th> 
           <th data-field="name">Nombre</th>
-          <th data-field="name"> Ultimo status</th>
+          <th data-field="name">Ultimo status</th>
         </tr>
       </thead>
       <tbody>
-        {% for detalle in detalle_list %}
+        {% for lista in detalle_list %}
             <tr>
-                <td>{{ detalle.fecha_actualizada }}</td>
-                <td>{{ detalle.name_package }}</td>
-                <td>{{ detalle.get_status_display }}</td>
+                <td>{{ lista.fecha_actualizada }}</td>
+                <td>{{ lista.name_package }}</td>
+                <td>{{ lista.get_status_display }}</td>
             </tr>
         {% endfor %} 
       </tbody>
     </table> 
+    </div>  
   </div>
 {% endblock %}

@@ -6,30 +6,35 @@
   <div class="col s6 offset-s3 center-align">
       <h3> lista de paquetes</h3>
   </div>
-
+  <div class="center-align">
+  {% if messages %}  
+    {% for message in messages %}   
+      <p {% if message.tags %} class="center-align" {% endif %}>{{ message }}</p>
+    {% endfor %} 
+  {% endif %}
+  </div>
 <div class="row">
     <div class="col s10 offset-1" >
   	  <table class="bordered highlight" >
           <thead> 
             	<tr>
-                <th data-field="name">fecha de publicacion</th> 
+                <th data-field="name">Fecha de publicacion</th> 
                 <th data-field="name">Nombre</th>
-                <th data-field="name">status</th>
+                <th data-field="name">Status</th>
+                <th data-field="name">Actualizar</th>
             	</tr>
           </thead>
           <tbody>
-      	{% for historial in object_list %}
+      	{% for historial in listado_list %}
             <tr>
                 <form action="" method="post">
                 {% csrf_token %}
                 
-                  <td>{{ historial.fecha_actualizada }}
-                  </td>
-
-                  <td>
-                  <input type="hidden" id="name_package" name="name_package" value="{{ historial.name_package }}">
+                  <td>{{ historial.fecha_actualizada }}</td>
+                  <td><input type="hidden" id="name_package" name="name_package" value="{{ historial.name_package }}">
                     {{ historial.name_package }}</td>
-                  <td> 
+                  <td>{{ historial.get_status_display }}</td>
+                  <td>
                     <div class="col s6"> 
                     <select  class="browser-default" id="status" name="status">
                       <option value="p" selected="selected">postulado</option>
@@ -42,6 +47,7 @@
                       <button type="submit" class="btn btn-default">Actualizar</button>
                     </div> 
                 </td>
+                  
                 </form>
             </tr>
        {% endfor %}  
