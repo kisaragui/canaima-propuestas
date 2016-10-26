@@ -1,4 +1,4 @@
-  {% extends "plantilla.html" %} 
+{% extends "plantilla.html" %} 
 
 {% block title %} Postulacion {% endblock %}
 
@@ -25,9 +25,9 @@
             	</tr>
           </thead>
           <tbody>
-      	{% for historial in listado_list %}
+      	{% for historial in object_list %}
             <tr>
-                <form action="" method="post">
+                <form action="" method="POST">
                 {% csrf_token %}
                 
                   <td>{{ historial.fecha_actualizada }}</td>
@@ -37,10 +37,10 @@
                   <td>
                     <div class="col s6"> 
                     <select  class="browser-default" id="status" name="status">
-                      <option value="p" selected="selected">postulado</option>
-                      <option value="e">evaluado</option>
-                      <option value="a">aceptado</option>
-                      <option value="r">rechazado</option>
+                      <option value="postulado" selected="selected">postulado</option>
+                      <option value="evaluado">evaluado</option>
+                      <option value="aceptado">aceptado</option>
+                      <option value="rechazado">rechazado</option>
                     </select>
                     </div>
                     <div class="col s6">  

@@ -7,7 +7,7 @@ from statusSeguimiento.models import Historial
 # funcion para guardar datos en el modelo Historial al guardar datos en el modelo Package
 def guardar_historial(sender, instance, created, **kwargs):
 	# cargando la instancia en el modelo Historial
-	historial= Historial(name_package=instance.name_package)
+	historial= Historial(name_package=instance.name_package, status = instance.status)
 	# guardando los datos instanciandos en el modelo Historial
 	historial.save()
 

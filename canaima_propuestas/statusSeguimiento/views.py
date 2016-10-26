@@ -7,7 +7,6 @@ from django.core.urlresolvers import reverse_lazy
 from statusSeguimiento.forms import HistorialForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import messages
-from django.db.models import Q
 # Create your views here.
 
 class HistorialList(ListView, ProcessFormView, FormMixin):
@@ -17,12 +16,6 @@ class HistorialList(ListView, ProcessFormView, FormMixin):
 	model = Historial
 	form_class = HistorialForm
 	success_url = reverse_lazy("listar_status")	
-
-	def get_context_data(self, **kwargs):
-	    context = super(HistorialList, self).get_context_data(**kwargs)
-	    context["listado_list"] = Historial.objects.all().distinct()
-	    return context
-
 
 	def post(self, request):
 		#almacenando en variables los datos enviandos por via POST

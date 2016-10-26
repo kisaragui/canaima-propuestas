@@ -6,10 +6,10 @@ from django.utils import timezone
 import datetime
 # Create your models here.
 
-postulado = "p"
-evaluado= "e"
-aceptado= "a"
-rechazado= "r"
+postulado = "postulado"
+evaluado= "evaluado"
+aceptado= "aceptado"
+rechazado= "rechazado"
 
 STATUS=(
 	(postulado,'postulado'),
@@ -21,7 +21,7 @@ class Historial(models.Model):
 
 	name_package = models.CharField('nombre paquete', max_length=50)
 	fecha_actualizada = models.DateTimeField(default=timezone.now)
-	status = models.CharField(max_length=2, choices=STATUS, default=postulado)
+	status = models.CharField(max_length=10, choices=STATUS, default=evaluado)
 	
 	class Meta:
 		ordering = ('fecha_actualizada',)

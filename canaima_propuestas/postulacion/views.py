@@ -1,11 +1,13 @@
 from postulacion.models import Package
 from django.shortcuts import render
-from django.views.generic import CreateView, ListView, UpdateView, DetailView
+from django.views.generic import CreateView, ListView, UpdateView, DetailView, FormView
+from django.views.generic.edit import ProcessFormView, FormMixin
 from django.core.urlresolvers import reverse_lazy
 from statusSeguimiento.models import Historial
-from postulacion.forms import PackageForm
+from postulacion.forms import PackageForm, UpdateForm
 from statusSeguimiento.forms import HistorialForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib import messages
 
 class PackageDetail(DetailView):
 
@@ -103,6 +105,41 @@ class PackageUpdate(UpdateView):
 			return HttpResponseRedirect(self.get_success_url())	
 
 
+class PackageListUpdate(ListView, ProcessFormView, FormMixin):
 
+	# lista los paquetes
+	template_name="listar_status_update.html"
+	model = Package
+	form_class = UpdateForm
+	success_url = reverse_lazy("listar_todo")	
+
+	def post(self, request):
+		
+		# capturando la ID del paquete
+		id_paquete = self.request.POST["id"]
+		# pasando la obteniendo el paquete por la ID 
+		paquete = self.model.objects.get(id = id_paquete)
+		# almacenando en variables los datos enviandos por via POST y por la instancia
+		form = self.form_class(request.POST, instance= paquete)
+		# se valida los datos via POST
+		if form.is_valid():
+			# almacenando en los variables sencillas los datos enviados via POST
+			s = form.cleaned_data['status']
+			n = form.cleaned_data["name_package"]
+			# se hace un filtro en un query con los datos anteriores y pregunta si existe en la base de datos
+			if Historial.objects.filter(name_package= n, status = s).exists():
+				# envia un mensaje de error
+				messages.add_message(request, messages.ERROR, 'Esta opcion ya existe.')
+			else:
+				# de lo contrario guarda el formulario
+				form.save()
+				return HttpResponseRedirect(reverse_lazy("listar_todo"))
+
+
+			return HttpResponseRedirect(reverse_lazy("listar_status_update"))
+			
+		else:
+
+			return HttpResponseRedirect(reverse_lazy("listar_todo"))
 
 

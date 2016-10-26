@@ -18,3 +18,7 @@ class PackageForm(forms.ModelForm):
 			'email':' Correo',
 		}
 		 
+class UpdateForm(forms.ModelForm):
+	class Meta:
+		model = Package
+		fields = ["name_package", "status"]
