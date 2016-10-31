@@ -4,29 +4,35 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <title>{% block title %} Canaima GNU/Linux {% endblock %}</title>
-
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
-  <nav class="white" role="navigation">
-    <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo">Logo</a>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo"> Canaima</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Navbar Link</a></li>
+        <li><a href="{% url 'listar_todo' %}"><i class="material-icons left">history</i>Seguimiento</a></li>
+      <li><a href="{% url 'listar_status_update' %}"><i class="material-icons left">update</i>Actualizar Status</a></li>
+        <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Paquetes<i class="material-icons right">arrow_drop_down</i></a></li>
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a href="{% url 'crear' %}">Postular un paquete</a></li>
+            <li><a href="{% url 'listar' %}">Ver Listados de paquetes</a></li>
+        </ul>
       </ul>
     </div>
   </nav>
   {% block content %}  {% endblock %}
-  <footer class="page-footer teal">
+ <footer class="page-footer">
+    <div class="footer-copyright center-align">
       <div class="container">
-      Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
       </div>
+    </div>
   </footer>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="{% static 'js/materialize.js' %}"></script>
   <script src="{% static 'js/init.js' %}"></script>
-  <script src="{% static 'js/main.js' %}"></script>
   </body>
 </html>

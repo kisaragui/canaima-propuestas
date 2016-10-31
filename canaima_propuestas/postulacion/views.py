@@ -111,8 +111,7 @@ class PackageListUpdate(ListView, ProcessFormView, FormMixin):
 	template_name="listar_status_update.html"
 	model = Package
 	form_class = UpdateForm
-	success_url = reverse_lazy("listar_todo")	
-
+	
 	def post(self, request):
 		
 		# capturando la ID del paquete

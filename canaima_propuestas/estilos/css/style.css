@@ -8,7 +8,17 @@
 
 nav ul a,
 nav .brand-logo {
-  color: #444;
+  color: #FFFFFF;
+}
+
+nav {
+  background-color: #622f96; 
+
+}
+nav ul a:hover {
+    font-weight: bold;
+    color: #622f96;
+    background-color: #d1c4e9;
 }
 
 p {
@@ -53,8 +63,10 @@ p {
 }
 
 footer.page-footer {
-  margin: 0;
+  background-color: #622f96;
+  font-weight: bold;
 }
+
 
 table {
 margin-left: 170px;
@@ -63,5 +75,26 @@ width: 90%;
 
 .browser-default {
   border: 0;
+
+}
+.teal {
+  background-color: #b39ddb ; 
+}
+
+#index-banner {
+    min-height: 480px;
+    position: relative;
+    background-color: white;
+}
+
+div.center-align img{
+
+width: 200px; 
+
+}
+
+nav i {
+ font-size: 10px;
+
 
 }

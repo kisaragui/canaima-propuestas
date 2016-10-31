@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from statusSeguimiento.models import Historial
 from postulacion.models import Package
-from django.views.generic import CreateView, ListView, UpdateView, DetailView, FormView
+from django.views.generic import CreateView, ListView, UpdateView, DetailView, FormView, TemplateView
 from django.views.generic.edit import ProcessFormView, FormMixin
 from django.core.urlresolvers import reverse_lazy
 from statusSeguimiento.forms import HistorialForm
@@ -43,3 +43,7 @@ class Historiallistar(ListView):
  
 	model = Historial
 	template_name = "listar_todo.html"
+
+
+class Principal(TemplateView):
+    template_name = "index.html"
