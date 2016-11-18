@@ -88,13 +88,24 @@ width: 90%;
 }
 
 div.center-align img{
-
 width: 200px; 
-
 }
 
 nav i {
  font-size: 10px;
+}
 
+nav .brand-logo {
+  left: 10px;
+  font-size: 50px;
+}
 
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
 }

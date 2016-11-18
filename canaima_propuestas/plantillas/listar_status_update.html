@@ -1,6 +1,6 @@
 {% extends "plantilla.html" %} 
 
-{% block title %} Postulacion {% endblock %}
+{% block title %} Actualizacion {% endblock %}
 
   {% block content %} 
   <div class="col s6 offset-s3 center-align">
@@ -11,7 +11,7 @@
     {% for message in messages %}   
       <p {% if message.tags %} class="center-align" {% endif %}>{{ message }}</p>
     {% endfor %} 
-  {% endif %}
+  {% endif %} 
   </div>
 <div class="row">
     <div class="col s10 offset-1" >

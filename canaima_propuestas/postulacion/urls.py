@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^postulacion/editar/(?P<pk>\d+)$', PackageUpdate.as_view(), name = "editar"),
     url(r'^postulacion/(?P<pk>\d+)$', PackageDetail.as_view(), name = "detalle"),
     url(r'^postulacion/listar/status/$', PackageListUpdate.as_view(), name= "listar_status_update"),
-]
+    
+]	

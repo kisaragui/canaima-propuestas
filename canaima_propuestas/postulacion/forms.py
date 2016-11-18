@@ -1,7 +1,9 @@
 from django import forms
 from postulacion.models import Package
+from captcha.fields import CaptchaField
 
 class PackageForm(forms.ModelForm):
+	captcha = CaptchaField()
 	class Meta:
 		model = Package
 		fields = [
@@ -10,15 +12,9 @@ class PackageForm(forms.ModelForm):
 			"description_package", 
 			"email",
 		]
-		
-		label={
-			'repository':'Repositorio', 
-			'name_package':'Nombre del Paquete', 
-			'description_package':'Descripcion del Paquete', 
-			'email':' Correo',
-		}
 		 
 class UpdateForm(forms.ModelForm):
 	class Meta:
 		model = Package
 		fields = ["name_package", "status"]
+

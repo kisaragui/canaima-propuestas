@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'django.contrib.sites',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -40,6 +41,8 @@ INSTALLED_APPS = [
     'postulacion',
     'rest_framework',
     'statusSeguimiento',
+    'captcha',
+    'registration',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -124,3 +127,15 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "estilos"),)
+
+# One-week activation window; you may, of course, use a different value.
+
+ACCOUNT_ACTIVATION_DAYS = 7
+
+# Automatically log the user in.
+
+REGISTRATION_AUTO_LOGIN = True
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/'

@@ -9,25 +9,44 @@
   <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
+<header>
   <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo"> Canaima</a>
+      <a href="{% url 'inicio' %}" class="brand-logo" >
+      <img width="55%" src="{% static 'imagenes/canaima-logo_white.png' %}">
+      </a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="{% url 'listar_todo' %}"><i class="material-icons left">history</i>Seguimiento</a></li>
-      <li><a href="{% url 'listar_status_update' %}"><i class="material-icons left">update</i>Actualizar Status</a></li>
-        <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Paquetes<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-button" href="#!"data-beloworigin="true" data-activates="dropdown1"><i class="material-icons left">person</i>{% if request.user.is_authenticated %}{{ user.username }}{% else %}Usuarios{% endif %}<i class="material-icons right">arrow_drop_down</i></a></li>
         <ul id="dropdown1" class="dropdown-content">
+            {% if request.user.is_staff %}
+              <li><a href="{% url 'auth_logout' %}">Cerrar Sesion</a></li>
+            {% else %}
+              <li><a href="{% url 'auth_login' %}">Iniciar Sesion</a></li>
+              <li><a href="{% url 'registration_register' %}">Registrarse</a></li>  
+            {% endif %}
+        </ul>
+        <li><a href="{% url 'listar_todo' %}">
+          <i class="material-icons left">history</i>Seguimiento</a></li>
+        {% if request.user.is_staff %}
+        <li><a href="{% url 'listar_status_update' %}">
+          <i class="material-icons left">update</i>Actualizar Status</a></li>
+        {% endif %}
+        <li><a class="dropdown-button" href="#!"data-beloworigin="true" data-activates="dropdown2">Paquetes <i class="material-icons right">arrow_drop_down</i></a></li>
+        <ul id="dropdown2" class="dropdown-content">
             <li><a href="{% url 'crear' %}">Postular un paquete</a></li>
             <li><a href="{% url 'listar' %}">Ver Listados de paquetes</a></li>
         </ul>
       </ul>
     </div>
   </nav>
-  {% block content %}  {% endblock %}
+</header>
+<main>
+    {% block content %}  {% endblock %}
+</main>
  <footer class="page-footer">
     <div class="footer-copyright center-align">
       <div class="container">
-      Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      Diseñado con <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
       </div>
     </div>
   </footer>

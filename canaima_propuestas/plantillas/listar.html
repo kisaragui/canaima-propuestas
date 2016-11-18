@@ -1,6 +1,6 @@
   {% extends "plantilla.html" %} 
 
-{% block title %} Postulacion {% endblock %}
+{% block title %} Paquetes Postulados {% endblock %}
 
   {% block content %} 
   <div class="col s6 offset-s3 center-align">
@@ -11,23 +11,23 @@
   	  <table class="bordered highlight" >
           <thead> 
             	<tr>
+                <th data-field="name">fecha de publicacion</th> 
                 <th data-field="name">Repositorio</th>
                 <th data-field="name">Nombre</th>
                 <th data-field="name">Status Actual</th>
-                <th data-field="name">fecha de publicacion</th> 
             	</tr>
           </thead>
           <tbody>
       	{% for package in object_list %}
             <tr>
                 <td><a href="{% url 'detalle' pk=package.id %}">
+                {{ package.fecha }}</a></td>
+                <td><a href="{% url 'detalle' pk=package.id %}">
                 {{ package.repository }}</a></td>
                 <td><a href="{% url 'detalle' pk=package.id %}">
                 {{ package.name_package }}</a></td>
                 <td><a href="{% url 'detalle' pk=package.id %}">
                 {{ package.status }}</a></td>
-                <td><a href="{% url 'detalle' pk=package.id %}">
-                {{ package.fecha }}</a></td>
             </tr>
         {% endfor %} 
           </tbody>

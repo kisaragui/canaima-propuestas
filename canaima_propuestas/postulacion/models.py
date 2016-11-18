@@ -3,6 +3,8 @@ from django.db import models
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from statusSeguimiento.models import Historial
+from django.utils import timezone
+import datetime
 
 # funcion para guardar datos en el modelo Historial al guardar datos en el modelo Package
 def guardar_historial(sender, instance, created, **kwargs):
@@ -13,12 +15,12 @@ def guardar_historial(sender, instance, created, **kwargs):
 
 class Package(models.Model):
 
-	repository = models.URLField('url repositorio del proyecto', max_length=150, unique=True)
-	name_package = models.CharField('nombre paquete', max_length=50, unique=True)
-	description_package = models.CharField('descripcion paquete', max_length=200, unique=True)
-	status = models.CharField('estatus del paquete', max_length=50, default='postulado')
-	email = models.EmailField('correo del postulador', max_length=50, unique=True)
-	fecha = models.DateField('fecha de creacion del paquete', auto_now_add=True, auto_now=False)
+	repository = models.URLField('Direccion url del repositorio del paquete', max_length=150, unique=True)
+	name_package = models.CharField('Nombre del paquete', max_length=50, unique=True)
+	description_package = models.CharField('Descripcion del paquete', max_length=200, unique=True)
+	status = models.CharField('Estatus del paquete', max_length=50, default='postulado')
+	email = models.EmailField('Correo del postulador', max_length=50, unique=True)
+	fecha = models.DateTimeField('fecha de creacion del paquete', auto_now_add=True, auto_now=False)
 	
 	class Meta:
 		ordering = ('name_package',)
