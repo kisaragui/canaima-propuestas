@@ -1,10 +1,15 @@
 {% extends "plantilla.html" %} 
 {% load i18n %}
 
-{% block title %}{% trans "Activation email sent" %}{% endblock %}
+{% block title %}{% trans "Registro exitoso" %}{% endblock %}
 
 {% block content %}
-<p>{% trans "Please check your email to complete the registration process." %}</p>
+
+<div class="row">
+	<div class="col s6 offset-s3 center-align">
+			<br><h5>{% trans "Su usuario ha sido registrado con exito." %}</h5><br>
+	</div>
+</div>	
 {% endblock %}
 
 

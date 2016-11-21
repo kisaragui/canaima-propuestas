@@ -18,7 +18,7 @@
       <ul class="right hide-on-med-and-down">
         <li><a class="dropdown-button" href="#!"data-beloworigin="true" data-activates="dropdown1"><i class="material-icons left">person</i>{% if request.user.is_authenticated %}{{ user.username }}{% else %}Usuarios{% endif %}<i class="material-icons right">arrow_drop_down</i></a></li>
         <ul id="dropdown1" class="dropdown-content">
-            {% if request.user.is_staff %}
+            {% if request.user.is_staff or request.user.is_authenticated %}
               <li><a href="{% url 'auth_logout' %}">Cerrar Sesion</a></li>
             {% else %}
               <li><a href="{% url 'auth_login' %}">Iniciar Sesion</a></li>
