@@ -68,7 +68,7 @@ footer.page-footer {
 }
 
 
-table {
+table.centrar {
 margin-left: 170px;
 width: 90%;
 }
@@ -109,3 +109,20 @@ body {
 main {
   flex: 1 0 auto;
 }
+
+@media only screen and (min-width: 993px) {
+  .container {
+    width: 90%;
+  }
+}
+
+.row {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto; 
+}
+
+div.input-field.centrar {
+  margin-top: 0px;
+
+} 

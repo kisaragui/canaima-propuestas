@@ -18,15 +18,14 @@ class Package(models.Model):
 	repository = models.URLField('Direccion url del repositorio del paquete', max_length=150, unique=True)
 	name_package = models.CharField('Nombre del paquete', max_length=50, unique=True)
 	description_package = models.CharField('Descripcion del paquete', max_length=200, unique=True)
-	status = models.CharField('Estatus del paquete', max_length=50, default='postulado')
+	status = models.CharField('Estatus del paquete', max_length=50, default='Postulado')
 	email = models.EmailField('Correo del postulador', max_length=50, unique=True)
 	fecha = models.DateTimeField('fecha de creacion del paquete', auto_now_add=True, auto_now=False)
 	
 	class Meta:
 		ordering = ('name_package',)
 			
-	#def __str__(self):
-	#	return self.basename()
+
 
 # al guardar un dato en el modelo, dispara o envia esta Signal o Senial  para ejectutarla
 post_save.connect(guardar_historial, sender=Package)

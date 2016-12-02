@@ -1,10 +1,10 @@
 from django.shortcuts import render
-from statusSeguimiento.models import Historial
+from statusSeguimiento.models import Historial, PreEvaluador, ObsEvaluador
 from postulacion.models import Package
 from django.views.generic import CreateView, ListView, UpdateView, DetailView, FormView, TemplateView
 from django.views.generic.edit import ProcessFormView, FormMixin
 from django.core.urlresolvers import reverse_lazy
-from statusSeguimiento.forms import HistorialForm
+from statusSeguimiento.forms import HistorialForm, PreEvaluadorForm, ObsEvaluadorForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import messages
 # Create your views here.
@@ -47,3 +47,26 @@ class Historiallistar(ListView):
 
 class Principal(TemplateView):
     template_name = "index.html"
+
+
+class PreguntasEvaluacion(UpdateView):
+	model =PreEvaluador
+	segundo_model = ObsEvaluador
+	form_class = PreEvaluadorForm
+	template_name = "formulario_evaluacion1.html"
+	success_url = reverse_lazy("inicio")
+	segundo_form_class = ObsEvaluadorForm
+
+	def post(self, request, *args, **kwargs):
+		# para que reciba el ojteto
+		self.object = self.get_object
+		# se carga la respuesta
+		form = self.form_class(self.request.POST)
+		# se validan los datos
+		if form.is_valid():
+			form.save()
+			# se redirige al sitio que tiene de nombre la variable "success_url" cuando el guardado sea un exito
+			return HttpResponseRedirect(self.get_success_url())
+		else:
+			# de lo contrario, devuelve el formulario
+		 	return self.render_to_response(self.get_context_data(form=form))

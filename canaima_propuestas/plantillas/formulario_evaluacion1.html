@@ -1,0 +1,143 @@
+{% block content %}
+<div class="container">
+<div class= "row">
+    <form  method="POST" >
+            {% csrf_token %}
+    <br>
+    <table>
+    <div>
+        <input type="hidden" id="id" name="id" value="{{ package.id }}">
+        <input type="hidden" id="name_package" name="name_package" value="{{ package.name_package }}">
+    </div>       
+    <tr class="valign-wrapper">
+        <td class="col s5">
+            <input type="checkbox" class="filled-in" id="id_pre1" name="pre1" />
+            <label for="id_pre1">Llave GnuPG</label>
+        </td>    
+        <td class="col s7">
+            <div class="input-field centrar">
+            <input id="id_obs1" type="text" class="validate">
+            <label for="id_obs1">Obsevaciones</label>
+            </div>
+        </td>
+    </tr>    
+    <tr class="valign-wrapper">
+        <td class="col s5">
+            <input type="checkbox" class="filled-in" id="id_pre2" name="pre2" />
+            <label for="id_pre2">No excede de los 200 MB</label>
+        </td>
+        <td class="col s7">
+            <div class="input-field centrar">
+            <input id="id_obs2" type="text" class="validate">
+            <label for="id_obs2">Obsevaciones</label>
+            </div>
+        </td>
+    </tr>  
+    <tr class="valign-wrapper">     
+        <td class="col s5">
+            <input type="checkbox" class="filled-in" id="id_pre3" name="pre3" />
+            <label for="id_pre3">Empaquetado</label>
+        </td>
+        <td class="col s7">
+            <div class="input-field centrar">
+            <input id="id_obs3" type="text" class="validate">
+            <label for="id_obs3">Obsevaciones</label>
+            </div>  
+        </td>
+    </tr>
+    <tr class="valign-wrapper">    
+        <td class="col s5">
+            <input type="checkbox" class="filled-in" id="id_pre4" name="pre4" />
+            <label for="id_pre4">Errores de Lintian</label>
+        </td>
+        <td class="col s7">
+            <div class="input-field centrar">
+            <input id="id_obs4" type="text" class="validate">
+            <label for="id_obs4">Obsevaciones</label>
+            </div>
+        </td>
+    </tr>
+    <tr class="valign-wrapper">
+        <td class="col s5">
+            <input type="checkbox" class="filled-in" id="id_pre5" name="pre5" />  
+            <label for="id_pre5">No excede el tiempo de contruccion o empaquetado</label>
+        </td>
+        <td class="col s7">
+            <div class="input-field centrar">
+            <input id="id_obs5" type="text" class="validate">
+            <label for="id_obs5">Obsevaciones</label>
+            </div>
+        </td>
+    </tr>
+    <tr class="valign-wrapper">
+        <td class="col s5">
+            <input type="checkbox" class="filled-in" id="id_pre6" name="pre6" />
+            <label for="id_pre6">Documentacion</label>
+        </td>
+        <td class="col s7">
+            <div class="input-field centrar">
+            <input id="id_obs6" type="text" class="validate">
+            <label for="id_obs6">Obsevaciones</label>
+            </div>
+        </td>
+    </tr>
+    <tr class="valign-wrapper">      
+        <td class="col s5">
+            <input type="checkbox" class="filled-in" id="id_pre7" name="pre7"/>
+            <label for="id_pre7">No ejecuta comandos maliciosos</label>
+        </td>
+        <td class="col s7">
+            <div class="input-field centrar">
+            <input id="id_obs7" type="text" class="validate">
+            <label for="id_obs7">Obsevaciones</label>
+            </div>
+        </td>
+    </tr>
+    <tr class="valign-wrapper">
+        <td class="col s3 ">
+            <input type="checkbox" class="filled-in" id="id_pre8" name="pre8"/>
+            <label for="id_pre8">main</label>
+            <input type="checkbox" class="filled-in" id="id_pre8" name="pre8"/>
+            <label for="id_pre8">contrib</label>
+            <input type="checkbox" class="filled-in" id="id_pre8" name="pre8"/>
+            <label for="id_pre8">non-free</label>
+        </td>
+        <td class="col s7">
+            <div class="input-field centrar">
+            <input id="id_obs8" type="text" class="validate">
+            <label for="id_obs8">Obsevaciones</label>
+            </div>
+        </td>
+    </tr> 
+    <tr class="valign-wrapper">    
+        <td class="col s5"> 
+            <input type="checkbox" class="filled-in" id="id_pre9" name="pre9"/>
+            <label for="id_pre9">Empaqueta binarios</label>
+        </td>
+        <td class="col s7"> 
+            <div class="input-field centrar">
+            <input id="id_obs9" type="text" class="validate">
+            <label for="id_obs9">Obsevaciones</label>
+            </div>
+        </td>
+        <tr><th><label for="id_pre1_0">Pre1:</label></th>
+        <td>
+        <ul id="id_pre1">
+        <li>
+        <label for="id_pre1_0"><input id="id_pre1_0" name="pre1" type="radio" value="True" /> Yes</label>
+        </li>
+        <li><label for="id_pre1_1">
+        <input checked="checked" id="id_pre1_1" name="pre1" type="radio" value="False" /> No</label></li></ul></td></tr>
+    </tr> 
+    </table>
+    <div class="col s6 offset-s3 center-align">
+        <div class="form-group">
+            <br>
+            <button type="submit" class="btn btn-default">Crear</button>
+        </div>
+    </div>
+    </form>
+</div>
+</div>
+<br>    
+{% endblock  %} 
