@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.dispatch import receiver
 from django.db.models.signals import post_save
-from statusSeguimiento.models import Historial
+from statusSeguimiento.models import Historial, PreEvaluador, ObsEvaluador
 from django.utils import timezone
 import datetime
 
@@ -12,6 +12,12 @@ def guardar_historial(sender, instance, created, **kwargs):
 	historial= Historial(name_package=instance.name_package, status = instance.status)
 	# guardando los datos instanciandos en el modelo Historial
 	historial.save()
+
+def guardarFormularioEvaluacion(sender, instance, created, **kwargs):
+	preguntas = PreEvaluador(id=instance.id)
+	preguntas.save()
+	observacion = ObsEvaluador(id=instance.id)
+	observacion.save()
 
 class Package(models.Model):
 
@@ -25,7 +31,6 @@ class Package(models.Model):
 	class Meta:
 		ordering = ('name_package',)
 			
-
-
 # al guardar un dato en el modelo, dispara o envia esta Signal o Senial  para ejectutarla
 post_save.connect(guardar_historial, sender=Package)
+post_save.connect(guardarFormularioEvaluacion, sender=Package)

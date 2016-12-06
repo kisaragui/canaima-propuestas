@@ -12,7 +12,17 @@ class PreEvaluadorForm(forms.ModelForm):
         model = PreEvaluador
         fields = ['pre1', 'pre2', 'pre3', 'pre4', 'pre5', 'pre6', 'pre7', 'pre8', 'pre9']
 
-        widgets = {'pre1': forms.RadioSelect}
+        widgets = {
+        		'pre1': forms.CheckboxInput,
+        		'pre2': forms.CheckboxInput,
+        		'pre3': forms.CheckboxInput,
+        		'pre4': forms.CheckboxInput,
+        		'pre5': forms.CheckboxInput,
+        		'pre6': forms.CheckboxInput,
+        		'pre7': forms.CheckboxInput,
+        		'pre8': forms.CheckboxInput,
+        		'pre9': forms.CheckboxInput
+        		}
 
 class ObsEvaluadorForm(forms.ModelForm):
 

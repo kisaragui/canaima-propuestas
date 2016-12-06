@@ -3,9 +3,9 @@ from django.shortcuts import render
 from django.views.generic import CreateView, ListView, UpdateView, DetailView, FormView
 from django.views.generic.edit import ProcessFormView, FormMixin
 from django.core.urlresolvers import reverse_lazy
-from statusSeguimiento.models import Historial
+from statusSeguimiento.models import Historial, PreEvaluador, ObsEvaluador
 from postulacion.forms import PackageForm, UpdateForm
-from statusSeguimiento.forms import HistorialForm
+from statusSeguimiento.forms import HistorialForm, PreEvaluadorForm, ObsEvaluadorForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import messages
 
@@ -29,6 +29,46 @@ class PackageList(ListView):
 	# lista los paquetes
 	template_name="listar.html"
 	model = Package
+
+class PackageListAdmin(ListView, ProcessFormView, FormMixin):
+
+	# lista los paquetes
+	template_name="listar_admin.html"
+	model = Package
+	segundo_model=PreEvaluador
+	tercer_model=ObsEvaluador
+	form_class = PreEvaluadorForm
+	success_url = reverse_lazy("listar")
+	segundo_form_class = ObsEvaluadorForm
+
+	# enviando respuesta de la pedicion para actualizar el paquete
+
+	def get_context_data(self, **kwargs):
+		context = super(PackageListAdmin, self).get_context_data(**kwargs)
+		# en caso de que el formulario no tenga contexto lo genere vacio, para ingresar los datos
+		if "pre_list" not in context:
+			# hace el pedido de los datos
+			context["pre_list"] = self.segundo_model.objects.all()
+		if "obs_list" not in context:
+			context["obs_list"] = self.tercer_model.objects.all()
+		return context
+
+	def post(self, request, *args, **kwargs):
+		# capturando la ID del paquete
+		pk = request.POST["id"]
+		#obteniendo la evaluacion  y las observaciones por la ID del paquete
+		evaluacion = self.segundo_model.objects.get(id = pk)
+		observacion = self.tercer_model.objects.get(id = pk)
+		# cargando los datos intanciados 
+		form = self.form_class(request.POST, instance= evaluacion)
+		form2 = self.segundo_form_class(self.request.POST, instance=  observacion)
+		# se valida los datos
+		if form.is_valid() and form2.is_valid():
+			form.save()
+			form2.save()
+			return HttpResponseRedirect(self.get_success_url())
+		else:
+			return HttpResponseRedirect(self.get_success_url())	
 
 class PackageCreate(CreateView):
 	

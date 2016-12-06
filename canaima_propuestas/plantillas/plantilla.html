@@ -28,12 +28,17 @@
         <li><a href="{% url 'listar_todo' %}">
           <i class="material-icons left">history</i>Seguimiento</a></li>
         {% if request.user.is_staff %}
-        <li><a href="{% url 'listar_status_update' %}">
-          <i class="material-icons left">update</i>Actualizar Status</a></li>
-        {% endif %}
-        <li><a class="dropdown-button" href="#!"data-beloworigin="true" data-activates="dropdown2">
-        Paquetes <i class="material-icons right">arrow_drop_down</i></a></li>
+        
+          
+          <li><a class="dropdown-button" href="#!"data-beloworigin="true" data-activates="dropdown2"><i class="material-icons left">update</i>Actualizar<i class="material-icons right">arrow_drop_down</i></a></li>
         <ul id="dropdown2" class="dropdown-content">
+            <li><a href="{% url 'listar_status_update' %}">Status</a></li>
+            <li><a href="{% url 'listar_admin' %}">Evaluaciones</a></li>
+        </ul>
+        {% endif %}
+        <li><a class="dropdown-button" href="#!"data-beloworigin="true" data-activates="dropdown3">
+        Paquetes <i class="material-icons right">arrow_drop_down</i></a></li>
+        <ul id="dropdown3" class="dropdown-content">
             <li><a href="{% url 'crear' %}">Postular un paquete</a></li>
             <li><a href="{% url 'listar' %}">Ver Listados de paquetes</a></li>
         </ul>

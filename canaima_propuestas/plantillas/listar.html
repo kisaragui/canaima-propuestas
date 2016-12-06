@@ -1,37 +1,37 @@
-{% extends "plantilla.html" %} 
+  {% extends "plantilla.html" %} 
 
 {% block title %} Paquetes Postulados {% endblock %}
 
-{% block content %} 
+  {% block content %} 
   <div class="col s6 offset-s3 center-align">
-      <h3>Listado de Paquetes</h3>
+      <h3> listado de paquetes</h3>
   </div>
-  <br>
-  <div class="container">
-    <div class="row ">
-        <div class="col s3 center-align "><strong>Fecha</strong></div> 
-        <div class="col s6 center-align"><strong>Repositorio</strong></div>
-        <div class="col s2 "><strong>Nombre</strong></div>
-        <div class="col s1 "><strong>Status</strong></div>
-    </div>
+  <div class="row">
+    <div class="col s10 offset-1" >
+  	  <table class="bordered highlight centrar" >
+          <thead> 
+            	<tr>
+                <th data-field="name">fecha de publicacion</th> 
+                <th data-field="name">Repositorio</th>
+                <th data-field="name">Nombre</th>
+                <th data-field="name">Status Actual</th>
+            	</tr>
+          </thead>
+          <tbody>
+      	{% for package in object_list %}
+            <tr>
+                <td><a href="{% url 'detalle' pk=package.id %}">
+                {{ package.fecha }}</a></td>
+                <td><a href="{% url 'detalle' pk=package.id %}">
+                {{ package.repository }}</a></td>
+                <td><a href="{% url 'detalle' pk=package.id %}">
+                {{ package.name_package }}</a></td>
+                <td><a href="{% url 'detalle' pk=package.id %}">
+                {{ package.status }}</a></td>
+            </tr>
+        {% endfor %} 
+          </tbody>
+      </table> 
+    </div>	
   </div>
-  <div class="container">
-    {% for package in object_list %}
-    <ul class="collapsible" data-collapsible="accordion">
-      <li>
-        <div class="collapsible-header">               
-          <div class="row">
-            <div class="col s3">{{ package.fecha }}</div>
-            <div class="col s6">{{ package.repository }}</div>
-            <div class="col s2">{{ package.name_package }}</div>
-            <div class="col s1">{{ package.status }}</div>
-          </div>
-        </div> 
-        <div class="collapsible-body"> 
-          {% include "formulario_evaluacion1.html" %}
-        </div>  
-      </li>
-    </ul>  
-  {% endfor %}
-  </div>
-{% endblock %}
+  {% endblock %}
