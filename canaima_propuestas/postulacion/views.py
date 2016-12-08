@@ -38,19 +38,26 @@ class PackageListAdmin(ListView, ProcessFormView, FormMixin):
 	segundo_model=PreEvaluador
 	tercer_model=ObsEvaluador
 	form_class = PreEvaluadorForm
-	success_url = reverse_lazy("listar")
+	success_url = reverse_lazy("listar_admin")
 	segundo_form_class = ObsEvaluadorForm
 
 	# enviando respuesta de la pedicion para actualizar el paquete
 
 	def get_context_data(self, **kwargs):
 		context = super(PackageListAdmin, self).get_context_data(**kwargs)
+		
 		# en caso de que el formulario no tenga contexto lo genere vacio, para ingresar los datos
-		if "pre_list" not in context:
+		#if "pre_list" not in context:
 			# hace el pedido de los datos
-			context["pre_list"] = self.segundo_model.objects.all()
+		#	context["pre_list"] = self.segundo_model.objects.all()
+		obs_list= self.tercer_model.objects.all()
+		pre_list= self.segundo_model.objects.all()
+		pack_list = self.model.objects.all()
+		listas=zip(pre_list,obs_list, pack_list)
+		noel1 = map(None, pre_list, obs_list, pack_list)
+		print noel1
 		if "obs_list" not in context:
-			context["obs_list"] = self.tercer_model.objects.all()
+			context["listas"] = listas
 		return context
 
 	def post(self, request, *args, **kwargs):

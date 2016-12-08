@@ -1,9 +1,6 @@
 {% block content %}
 <div class="container">
 <div class= "row">
-    
-    {% for evaluacion in pre_list %}
-    {% for observacion in obs_list %}
     <form  method="POST" >
             {% csrf_token %}
     <br>
@@ -14,8 +11,8 @@
 
     <tr class="valign-wrapper">
         <td class="col s5">
-            <input type="checkbox" class="filled-in" id="id_pre1" name="pre1" {% if evaluacion.pre1  %}checked="checked"{% endif %} />
-            <label for="id_pre1">Llave GnuPG</label>
+            <input type="checkbox" class="filled-in" id="{{ package.id  }}" name="pre1" {% if evaluacion.pre1  %}checked="checked"{% endif %} />
+            <label for="{{ package.id  }}">Llave GnuPG</label>
         </td>    
         <td class="col s7">
             <div class="input-field centrar">
@@ -98,17 +95,17 @@
     </tr>
     <tr class="valign-wrapper">
         <td class="col s3 ">
-            <input type="checkbox" class="filled-in" id="id_pre8" name="pre8" {% if evaluacion.pre8  %}checked="checked"{% endif %}/>
-            <label for="id_pre8">main</label>
-            <input type="checkbox" class="filled-in" id="id_pre8" name="pre8"{% if evaluacion.pre8  %}checked="checked"{% endif %} />
-            <label for="id_pre8">contrib</label>
-            <input type="checkbox" class="filled-in" id="id_pre8" name="pre8" {% if evaluacion.pre8  %}checked="checked"{% endif %}/>
-            <label for="id_pre8">non-free</label>
+            <input type="checkbox" class="filled-in" id="id_pre8_0" name="pre8" {% if evaluacion.pre8  %}checked="checked"{% endif %}/>
+            <label for="id_pre8_0">main</label>
+            <input type="checkbox" class="filled-in" id="id_pre8_1" name="pre8"{% if evaluacion.pre8  %}checked="checked"{% endif %} />
+            <label for="id_pre8_1">contrib</label>
+            <input type="checkbox" class="filled-in" id="id_pre8_2" name="pre8" {% if evaluacion.pre8  %}checked="checked"{% endif %}/>
+            <label for="id_pre8_2">non-free</label>
         </td>
         <td class="col s7">
             <div class="input-field centrar">
-            <input id="id_obs8" type="text" name= "obs8" class="validate" {% if observacion.obs8  %}value=" {{ observacion.obs8 }}"{% endif %}>
-            <label for="id_obs8">Obsevaciones</label>
+            <input id="id_obs8_2" type="text" name= "obs8" class="validate" {% if observacion.obs8  %}value=" {{ observacion.obs8 }}"{% endif %}>
+            <label for="id_obs8_2">Obsevaciones</label>
             </div>
         </td>
     </tr> 
@@ -131,9 +128,9 @@
         </div>
     </div>
     </form>
-    {% endfor %}
-    {% endfor %} 
+    
 </div>
 </div>
+ 
 <br>    
 {% endblock %} 

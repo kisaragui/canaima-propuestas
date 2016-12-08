@@ -16,7 +16,7 @@
     </div>
   </div>
   <div class="container">
-    {% for package in object_list %}
+  {% for evaluacion,observacion, package in listas %}
     <ul class="collapsible" data-collapsible="accordion">
       <li>
         <div class="collapsible-header">               
@@ -36,7 +36,7 @@
     <br>
       <div class="col s6 offset-s3 center-align">
       <h5> Por el momento no se han postulado ningun paquete </h5>
-  </div>
+      </div>
   {% endfor %}
   </div>
 {% endblock %}

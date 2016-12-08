@@ -8,10 +8,10 @@ import datetime
 # Create your models here.
 
 	
-postulado = "postulado"
-evaluado= "evaluado"
-aceptado= "aceptado"
-rechazado= "rechazado"
+postulado = "Postulado"
+evaluado= "En Evaluacion"
+aceptado= "Aceptado"
+rechazado= "Rechazado"
 
 STATUS=(
 	(postulado,'Postulado'),
@@ -51,15 +51,15 @@ class PreEvaluador(models.Model):
 
 class ObsEvaluador(models.Model):
 	
-	obs1 = models.CharField("Observaciones", max_length=200, default="no hay observaciones", blank=True)
-	obs2 = models.CharField("Observaciones", max_length=200, default="no hay observaciones", blank=True)
-	obs3 = models.CharField("Observaciones", max_length=200, default="no hay observaciones", blank=True)
-	obs4 = models.CharField("Observaciones", max_length=200, default="no hay observaciones", blank=True)
-	obs5 = models.CharField("Observaciones", max_length=200, default="no hay observaciones", blank=True)
-	obs6 = models.CharField("Observaciones", max_length=200, default="no hay observaciones", blank=True)
-	obs7 = models.CharField("Observaciones", max_length=200, default="no hay observaciones", blank=True)
-	obs8 = models.CharField("Observaciones", max_length=200, default="no hay observaciones", blank=True)
-	obs9 = models.CharField("Observaciones", max_length=200, default="no hay observaciones", blank=True)
+	obs1 = models.CharField("Observaciones", max_length=200, blank=True)
+	obs2 = models.CharField("Observaciones", max_length=200, blank=True)
+	obs3 = models.CharField("Observaciones", max_length=200, blank=True)
+	obs4 = models.CharField("Observaciones", max_length=200, blank=True)
+	obs5 = models.CharField("Observaciones", max_length=200, blank=True)
+	obs6 = models.CharField("Observaciones", max_length=200, blank=True)
+	obs7 = models.CharField("Observaciones", max_length=200, blank=True)
+	obs8 = models.CharField("Observaciones", max_length=200, blank=True)
+	obs9 = models.CharField("Observaciones", max_length=200, blank=True)
 
 	
 			
