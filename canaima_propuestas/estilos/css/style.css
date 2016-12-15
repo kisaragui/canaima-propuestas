@@ -126,3 +126,14 @@ div.input-field.centrar {
   margin-top: 0px;
 
 } 
+.input-field label.etiqueta {
+  left: 0px;
+
+}
+
+.input-field label.etiqueta.active {
+  font-size: 0.8rem;
+  -webkit-transform: translateY(-140%);
+  transform: translateY(-140%);
+
+}

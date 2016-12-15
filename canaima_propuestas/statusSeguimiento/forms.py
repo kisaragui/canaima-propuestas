@@ -10,7 +10,7 @@ class PreEvaluadorForm(forms.ModelForm):
 
     class Meta:
         model = PreEvaluador
-        fields = ['pre1', 'pre2', 'pre3', 'pre4', 'pre5', 'pre6', 'pre7', 'pre8', 'pre9']
+        fields = ['pre1', 'pre2', 'pre3', 'pre4', 'pre5', 'pre6', 'pre7', 'pre8_0', 'pre8_1', 'pre8_2', 'pre9']
 
         widgets = {
         		'pre1': forms.CheckboxInput,
@@ -20,7 +20,9 @@ class PreEvaluadorForm(forms.ModelForm):
         		'pre5': forms.CheckboxInput,
         		'pre6': forms.CheckboxInput,
         		'pre7': forms.CheckboxInput,
-        		'pre8': forms.CheckboxInput,
+        		'pre8_0': forms.CheckboxInput,
+                'pre8_1': forms.CheckboxInput,
+                'pre8_2': forms.CheckboxInput,
         		'pre9': forms.CheckboxInput
         		}
 

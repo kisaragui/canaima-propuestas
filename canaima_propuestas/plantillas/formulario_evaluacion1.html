@@ -7,117 +7,117 @@
     <table>
     <div>
         <input type="hidden" id="id" name="id" value="{{ package.id }}">
+        
     </div>
-
     <tr class="valign-wrapper">
         <td class="col s5">
-            <input type="checkbox" class="filled-in" id="{{ package.id  }}" name="pre1" {% if evaluacion.pre1  %}checked="checked"{% endif %} />
-            <label for="{{ package.id  }}">Llave GnuPG</label>
+            <input type="checkbox" class="filled-in" id="id_pre1.{{ evaluacion.id  }}" name="pre1" {% if evaluacion.pre1  %}checked="checked"{% endif %} />
+            <label for="id_pre1.{{ evaluacion.id  }}">Llave GnuPG</label>
         </td>    
         <td class="col s7">
             <div class="input-field centrar">
-            <input id="id_obs1" type="text" name= "obs1" class="validate" {% if observacion.obs1  %}value=" {{ observacion.obs1 }}"{% endif %} >
-            <label for="id_obs1">Obsevaciones</label>
+            <input id="id_obs1.{{ observacion.id }}" type="text" name= "obs1" class="validate" {% if observacion.obs1  %}value=" {{ observacion.obs1 }}"{% endif %} >
+            <label class="etiqueta" for="id_obs1.{{ observacion.id  }}">Obsevaciones</label>
             </div>
         </td>
     </tr>    
     <tr class="valign-wrapper">
         <td class="col s5">
-            <input type="checkbox" class="filled-in" id="id_pre2" name="pre2" {% if evaluacion.pre2  %}checked="checked"{% endif %} />
-            <label for="id_pre2">No excede de los 200 MB</label>
+            <input type="checkbox" class="filled-in" id="id_pre2.{{ evaluacion.id  }}" name="pre2" {% if evaluacion.pre2  %}checked="checked"{% endif %} />
+            <label for="id_pre2.{{ evaluacion.id }}">No excede de los 200 MB</label>
         </td>
         <td class="col s7">
             <div class="input-field centrar">
-            <input id="id_obs2" type="text" name= "obs2" class="validate" {% if observacion.obs2 %} value=" {{ observacion.obs2 }}"{% endif %} >
-            <label for="id_obs2">Obsevaciones</label>
+            <input id="id_obs2.{{ observacion.id  }}" type="text" name= "obs2" class="validate" {% if observacion.obs2 %} value=" {{ observacion.obs2 }}"{% endif %} >
+            <label class="etiqueta" for="id_obs2.{{ observacion.id  }}">Obsevaciones</label>
             </div>
         </td>
     </tr>  
     <tr class="valign-wrapper">     
         <td class="col s5">
-            <input type="checkbox" class="filled-in" id="id_pre3" name="pre3" {% if evaluacion.pre3  %}checked="checked"{% endif %}/>
-            <label for="id_pre3">Empaquetado</label>
+            <input type="checkbox" class="filled-in" id="id_pre3.{{ evaluacion.id  }}" name="pre3" {% if evaluacion.pre3  %}checked="checked"{% endif %}/>
+            <label for="id_pre3.{{ evaluacion.id  }}">Empaquetado</label>
         </td>
         <td class="col s7">
             <div class="input-field centrar">
-            <input id="id_obs3" type="text" name= "obs3" class="validate"{% if observacion.obs3  %}value=" {{ observacion.obs3 }}"{% endif %} >
-            <label for="id_obs3">Obsevaciones</label>
+            <input id="id_obs3.{{ observacion.id }}" type="text" name= "obs3" class="validate"{% if observacion.obs3  %}value=" {{ observacion.obs3 }}"{% endif %} >
+            <label class="etiqueta" for="id_obs3.{{ observacion.id  }}">Obsevaciones</label>
             </div>  
         </td>
     </tr>
     <tr class="valign-wrapper">    
         <td class="col s5">
-            <input type="checkbox" class="filled-in" id="id_pre4" name="pre4" {% if evaluacion.pre4  %}checked="checked"{% endif %}/>
-            <label for="id_pre4">Errores de Lintian</label>
+            <input type="checkbox" class="filled-in" id="id_pre4.{{ evaluacion.id  }}" name="pre4" {% if evaluacion.pre4  %}checked="checked"{% endif %}/>
+            <label for="id_pre4.{{ evaluacion.id  }}">Errores de Lintian</label>
         </td>
         <td class="col s7">
             <div class="input-field centrar">
-            <input id="id_obs4" type="text" name= "obs4" class="validate" {% if observacion.obs4  %}value=" {{ observacion.obs4 }}"{% endif %}>
-            <label for="id_obs4">Obsevaciones</label>
+            <input id="id_obs4.{{ observacion.id }}" type="text" name= "obs4" class="validate" {% if observacion.obs4  %}value=" {{ observacion.obs4 }}"{% endif %}>
+            <label class="etiqueta" for="id_obs4.{{ observacion.id  }}">Obsevaciones</label>
             </div>
         </td>
     </tr>
     <tr class="valign-wrapper">
         <td class="col s5">
-            <input type="checkbox" class="filled-in" id="id_pre5" name="pre5" {% if evaluacion.pre5  %}checked="checked"{% endif %}/>  
-            <label for="id_pre5">No excede el tiempo de contruccion o empaquetado</label>
+            <input type="checkbox" class="filled-in" id="id_pre5.{{ evaluacion.id  }}" name="pre5" {% if evaluacion.pre5  %}checked="checked"{% endif %}/>  
+            <label for="id_pre5.{{ evaluacion.id  }}">No excede el tiempo de contruccion o empaquetado</label>
         </td>
         <td class="col s7">
             <div class="input-field centrar">
-            <input id="id_obs5" type="text" name= "obs5" class="validate" {% if observacion.obs5  %}value=" {{ observacion.obs5 }}"{% endif %}>
-            <label for="id_obs5">Obsevaciones</label>
+            <input id="id_obs5.{{ observacion.id }}" type="text" name= "obs5" class="validate" {% if observacion.obs5  %}value=" {{ observacion.obs5 }}"{% endif %}>
+            <label class="etiqueta" for="id_obs5.{{ observacion.id  }}">Obsevaciones</label>
             </div>
         </td>
     </tr>
     <tr class="valign-wrapper">
         <td class="col s5">
-            <input type="checkbox" class="filled-in" id="id_pre6" name="pre6" {% if evaluacion.pre6  %}checked="checked"{% endif %}/>
-            <label for="id_pre6">Documentacion</label>
+            <input type="checkbox" class="filled-in" id="id_pre6.{{ evaluacion.id  }}" name="pre6" {% if evaluacion.pre6  %}checked="checked"{% endif %}/>
+            <label for="id_pre6.{{ evaluacion.id  }}">Documentacion</label>
         </td>
         <td class="col s7">
             <div class="input-field centrar">
-            <input id="id_obs6" type="text" name= "obs6" class="validate" {% if observacion.obs6  %}value=" {{ observacion.obs6 }}"{% endif %}>
-            <label for="id_obs6">Obsevaciones</label>
+            <input id="id_obs6.{{ observacion.id }}" type="text" name= "obs6" class="validate" {% if observacion.obs6  %}value=" {{ observacion.obs6 }}"{% endif %}>
+            <label class="etiqueta" for="id_obs6.{{ observacion.id  }}">Obsevaciones</label>
             </div>
         </td>
     </tr>
     <tr class="valign-wrapper">      
         <td class="col s5">
-            <input type="checkbox" class="filled-in" id="id_pre7" name="pre7" {% if evaluacion.pre7  %}checked="checked"{% endif %}/>
-            <label for="id_pre7">No ejecuta comandos maliciosos</label>
+            <input type="checkbox" class="filled-in" id="id_pre7.{{ evaluacion.id  }}" name="pre7" {% if evaluacion.pre7  %}checked="checked"{% endif %}/>
+            <label for="id_pre7.{{ evaluacion.id  }}">No ejecuta comandos maliciosos</label>
         </td>
         <td class="col s7">
             <div class="input-field centrar">
-            <input id="id_obs7" type="text" name= "obs7" class="validate" {% if observacion.obs7  %}value=" {{ observacion.obs7 }}"{% endif %}>
-            <label for="id_obs7">Obsevaciones</label>
+            <input id="id_obs7.{{ observacion.id }}" type="text" name= "obs7" class="validate" {% if observacion.obs7  %}value=" {{ observacion.obs7 }}"{% endif %}>
+            <label class="etiqueta" for="id_obs7.{{ observacion.id  }}">Obsevaciones</label>
             </div>
         </td>
     </tr>
     <tr class="valign-wrapper">
         <td class="col s3 ">
-            <input type="checkbox" class="filled-in" id="id_pre8_0" name="pre8" {% if evaluacion.pre8  %}checked="checked"{% endif %}/>
-            <label for="id_pre8_0">main</label>
-            <input type="checkbox" class="filled-in" id="id_pre8_1" name="pre8"{% if evaluacion.pre8  %}checked="checked"{% endif %} />
-            <label for="id_pre8_1">contrib</label>
-            <input type="checkbox" class="filled-in" id="id_pre8_2" name="pre8" {% if evaluacion.pre8  %}checked="checked"{% endif %}/>
-            <label for="id_pre8_2">non-free</label>
+            <input type="checkbox" class="filled-in" id="id_pre8_0.{{ evaluacion.id  }}" name="pre8_0" {% if evaluacion.pre8_0  %}checked="checked"{% endif %}/>
+            <label for="id_pre8_0.{{ evaluacion.id  }}">main</label>
+            <input type="checkbox" class="filled-in" id="id_pre8_1.{{ evaluacion.id  }}" name="pre8_1"{% if evaluacion.pre8_1  %}checked="checked"{% endif %} />
+            <label for="id_pre8_1.{{ evaluacion.id  }}">contrib</label>
+            <input type="checkbox" class="filled-in" id="id_pre8_2.{{ evaluacion.id  }}" name="pre8_2" {% if evaluacion.pre8_2  %}checked="checked"{% endif %}/>
+            <label for="id_pre8_2.{{ evaluacion.id  }}">non-free</label>
         </td>
         <td class="col s7">
             <div class="input-field centrar">
-            <input id="id_obs8_2" type="text" name= "obs8" class="validate" {% if observacion.obs8  %}value=" {{ observacion.obs8 }}"{% endif %}>
-            <label for="id_obs8_2">Obsevaciones</label>
+            <input id="id_obs8.{{ observacion.id }}" type="text" name= "obs8" class="validate" {% if observacion.obs8  %}value=" {{ observacion.obs8 }}"{% endif %}>
+            <label class="etiqueta" for="id_obs8.{{ observacion.id  }}">Obsevaciones</label>
             </div>
         </td>
     </tr> 
     <tr class="valign-wrapper">    
         <td class="col s5"> 
-            <input type="checkbox" class="filled-in" id="id_pre9" name="pre9" {% if evaluacion.pre9  %}checked="checked"{% endif %}/>
-            <label for="id_pre9">Empaqueta binarios</label>
+            <input type="checkbox" class="filled-in" id="id_pre9.{{ evaluacion.id  }}" name="pre9" {% if evaluacion.pre9  %}checked="checked"{% endif %}/>
+            <label for="id_pre9.{{ evaluacion.id  }}">Empaqueta binarios</label>
         </td>
         <td class="col s7"> 
             <div class="input-field centrar">
-            <input id="id_obs9" type="text" name= "obs9" class="validate" {% if observacion.obs9  %}value=" {{ observacion.obs9 }}"{% endif %} >
-            <label for="id_obs9">Obsevaciones</label>
+            <input id="id_obs9.{{ observacion.id }}" type="text" name= "obs9" class="validate" {% if observacion.obs9  %}value=" {{ observacion.obs9 }}"{% endif %} >
+            <label class="etiqueta" for="id_obs9.{{ observacion.id  }}">Obsevaciones</label>
             </div>
         </td>  
     </table>
@@ -127,10 +127,8 @@
             <button type="submit" class="btn btn-default">guardar</button>
         </div>
     </div>
-    </form>
-    
+    </form> 
 </div>
 </div>
- 
 <br>    
 {% endblock %} 

@@ -30,37 +30,40 @@ class PackageList(ListView):
 	template_name="listar.html"
 	model = Package
 
+	def get_context_data(self, *args, **kwargs):
+		context = super(PackageList, self).get_context_data(**kwargs)
+		# en caso de que el formulario no tenga contexto lo genere vacio, para ingresar los datos
+		if "listado_list" not in context:
+			context["listado_list"] = self.model.objects.all().order_by("name_package")
+		return context
 class PackageListAdmin(ListView, ProcessFormView, FormMixin):
 
 	# lista los paquetes
 	template_name="listar_admin.html"
 	model = Package
 	segundo_model=PreEvaluador
-	tercer_model=ObsEvaluador
 	form_class = PreEvaluadorForm
-	success_url = reverse_lazy("listar_admin")
+	tercer_model=ObsEvaluador
 	segundo_form_class = ObsEvaluadorForm
-
+	success_url = reverse_lazy("listar_admin")
+	
 	# enviando respuesta de la pedicion para actualizar el paquete
 
-	def get_context_data(self, **kwargs):
+	def get_context_data(self, *args, **kwargs):
 		context = super(PackageListAdmin, self).get_context_data(**kwargs)
-		
-		# en caso de que el formulario no tenga contexto lo genere vacio, para ingresar los datos
-		#if "pre_list" not in context:
-			# hace el pedido de los datos
-		#	context["pre_list"] = self.segundo_model.objects.all()
-		obs_list= self.tercer_model.objects.all()
-		pre_list= self.segundo_model.objects.all()
-		pack_list = self.model.objects.all()
-		listas=zip(pre_list,obs_list, pack_list)
-		noel1 = map(None, pre_list, obs_list, pack_list)
-		print noel1
-		if "obs_list" not in context:
+		# se llmman los modelos para ser visualizados por los nombres de los paquetes
+		obs_list= self.tercer_model.objects.all().order_by("name")
+		pre_list= self.segundo_model.objects.all().order_by("name")
+		pack_list = self.model.objects.all().order_by("name_package")
+		# se une los modelos en la tupla de 3 elementos para visualizar mejor
+		listas=zip(pre_list, obs_list, pack_list)
+		# se pasan  la variable al template por el comtexto
+		if "listas" not in context:
 			context["listas"] = listas
 		return context
 
 	def post(self, request, *args, **kwargs):
+		
 		# capturando la ID del paquete
 		pk = request.POST["id"]
 		#obteniendo la evaluacion  y las observaciones por la ID del paquete

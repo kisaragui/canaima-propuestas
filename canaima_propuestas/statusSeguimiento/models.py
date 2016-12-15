@@ -4,7 +4,6 @@ from django.db.models.signals import post_save
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.utils import timezone
-import datetime
 # Create your models here.
 
 	
@@ -23,7 +22,6 @@ si = True
 no = False
 
 OPCION2= ((si, "Si"), (no, "No"),)
-OPCION3= ((no, "main"), (no, "contrib"), (no, "non-free"),)
 
 class Historial(models.Model):
 
@@ -35,10 +33,11 @@ class Historial(models.Model):
 		ordering = ('fecha_actualizada',)
 		
 	def __str__(self):
-		return self.name_package
+		return '%s %s' % (self.name_package, self.status)
 
 class PreEvaluador(models.Model):
 	
+	name = models.CharField(max_length= 50, blank=True)
 	pre1 = models.BooleanField(max_length=5, choices=OPCION2, default=no)
 	pre2 = models.BooleanField(max_length=5, choices=OPCION2, default=no)
 	pre3 = models.BooleanField(max_length=5, choices=OPCION2, default=no)
@@ -46,11 +45,14 @@ class PreEvaluador(models.Model):
 	pre5 = models.BooleanField(max_length=5, choices=OPCION2, default=no)
 	pre6 = models.BooleanField(max_length=5, choices=OPCION2, default=no)
 	pre7 = models.BooleanField(max_length=5, choices=OPCION2, default=no)
-	pre8 = models.BooleanField(max_length=7, choices=OPCION3, default=no)
+	pre8_0 = models.BooleanField("main",max_length=7, choices=OPCION2, default=no)
+	pre8_1 = models.BooleanField("contrib", max_length=7, choices=OPCION2, default=no)
+	pre8_2 = models.BooleanField("non-free",max_length=7, choices=OPCION2, default=no)
 	pre9 = models.BooleanField(max_length=5, choices=OPCION2, default=no)
 
 class ObsEvaluador(models.Model):
 	
+	name = models.CharField( max_length= 50, blank=True)
 	obs1 = models.CharField("Observaciones", max_length=200, blank=True)
 	obs2 = models.CharField("Observaciones", max_length=200, blank=True)
 	obs3 = models.CharField("Observaciones", max_length=200, blank=True)

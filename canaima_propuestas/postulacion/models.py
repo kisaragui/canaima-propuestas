@@ -14,22 +14,22 @@ def guardar_historial(sender, instance, created, **kwargs):
 	historial.save()
 
 def guardarFormularioEvaluacion(sender, instance, created, **kwargs):
-	preguntas = PreEvaluador(id=instance.id)
+	preguntas = PreEvaluador(id=instance.id, name= instance.name_package)
 	preguntas.save()
-	observacion = ObsEvaluador(id=instance.id)
+	observacion = ObsEvaluador(id=instance.id, name= instance.name_package)
 	observacion.save()
 
 class Package(models.Model):
 
 	repository = models.URLField('Direccion url del repositorio del paquete', max_length=150, unique=True)
-	name_package = models.CharField('Nombre del paquete', max_length=50, unique=True)
+	name_package = models.CharField('Nombre del paquete', max_length=50)
 	description_package = models.CharField('Descripcion del paquete', max_length=200, unique=True)
 	status = models.CharField('Estatus del paquete', max_length=50, default='Postulado')
-	email = models.EmailField('Correo del postulador', max_length=50, unique=True)
+	email = models.EmailField('Correo del postulador', max_length=50)
 	fecha = models.DateTimeField('fecha de creacion del paquete', auto_now_add=True, auto_now=False)
 	
-	class Meta:
-		ordering = ('name_package',)
+	def __str__(self):
+		return  self.name_package
 			
 # al guardar un dato en el modelo, dispara o envia esta Signal o Senial  para ejectutarla
 post_save.connect(guardar_historial, sender=Package)
