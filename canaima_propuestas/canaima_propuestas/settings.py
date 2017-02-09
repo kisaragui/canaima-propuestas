@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'statusSeguimiento',
     'captcha',
     'registration',
+    'api'
 ]
 
 MIDDLEWARE_CLASSES = [
