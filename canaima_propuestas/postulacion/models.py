@@ -4,7 +4,9 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from statusSeguimiento.models import Historial, PreEvaluador, ObsEvaluador
 from django.utils import timezone
-import datetime
+import datetime 
+from django.core.validators import RegexValidator
+
 
 # funcion para guardar datos en el modelo Historial al guardar datos en el modelo Package
 def guardar_historial(sender, instance, created, **kwargs):
@@ -34,3 +36,4 @@ class Package(models.Model):
 # al guardar un dato en el modelo, dispara o envia esta Signal o Senial  para ejectutarla
 post_save.connect(guardar_historial, sender=Package)
 post_save.connect(guardarFormularioEvaluacion, sender=Package)
+

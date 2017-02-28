@@ -131,7 +131,7 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "estilos"),)
 
 # One-week activation window; you may, of course, use a different value.
 
-ACCOUNT_ACTIVATION_DAYS = 7
+ACCOUNT_ACTIVATION_DAYS = 1
 
 # Automatically log the user in.
 

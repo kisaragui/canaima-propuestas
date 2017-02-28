@@ -8,6 +8,10 @@ from postulacion.forms import PackageForm, UpdateForm
 from statusSeguimiento.forms import HistorialForm, PreEvaluadorForm, ObsEvaluadorForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import messages
+import re
+from django.core.validators import RegexValidator
+from django.core.exceptions import ValidationError
+
 
 class PackageDetail(DetailView):
 
@@ -36,6 +40,7 @@ class PackageList(ListView):
 		if "listado_list" not in context:
 			context["listado_list"] = self.model.objects.all().order_by("name_package")
 		return context
+		
 class PackageListAdmin(ListView, ProcessFormView, FormMixin):
 
 	# lista los paquetes
@@ -106,6 +111,7 @@ class PackageCreate(CreateView):
 		form = self.form_class(self.request.POST)
 		# se validan los datos
 		if form.is_valid():
+			
 			form.save()
 			# se redirige al sitio que tiene de nombre la variable "success_url" cuando el guardado sea un exito
 			return HttpResponseRedirect(self.get_success_url())

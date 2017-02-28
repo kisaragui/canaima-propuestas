@@ -5,15 +5,15 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <title>{% block title %} Canaima GNU/Linux {% endblock %}</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet"/>
 </head>
 <body>
 <header>
   <nav>
     <div class="nav-wrapper">
       <a href="{% url 'inicio' %}" class="brand-logo" >
-      <img width="55%" src="{% static 'imagenes/canaima-logo_white.png' %}">
+      <img width="55%" src="{% static 'imagenes/canaima-logo_white.png' %}" alt="canaima-logo-blanco">
       </a>
       <ul class="right hide-on-med-and-down">
         <li><a class="dropdown-button" href="#!"data-beloworigin="true" data-activates="dropdown1"><i class="material-icons left">person</i>{% if request.user.is_authenticated %}{{ user.username }}{% else %}Usuarios{% endif %}<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -28,8 +28,6 @@
         <li><a href="{% url 'listar_todo' %}">
           <i class="material-icons left">history</i>Seguimiento</a></li>
         {% if request.user.is_staff %}
-        
-          
           <li><a class="dropdown-button" href="#!"data-beloworigin="true" data-activates="dropdown2"><i class="material-icons left">update</i>Actualizar<i class="material-icons right">arrow_drop_down</i></a></li>
         <ul id="dropdown2" class="dropdown-content">
             <li><a href="{% url 'listar_status_update' %}">Status</a></li>
@@ -39,15 +37,19 @@
         <li><a class="dropdown-button" href="#!"data-beloworigin="true" data-activates="dropdown3">
         Paquetes <i class="material-icons right">arrow_drop_down</i></a></li>
         <ul id="dropdown3" class="dropdown-content">
+            {% if request.user.is_staff or request.user.is_authenticated %}
             <li><a href="{% url 'crear' %}">Postular un paquete</a></li>
             <li><a href="{% url 'listar' %}">Ver Listados de paquetes</a></li>
+            {% else %}
+            <li><a href="{% url 'listar' %}">Ver Listados de paquetes</a></li>
+            {% endif %}
         </ul>
       </ul>
     </div>
   </nav>
 </header>
 <main>
-    {% block content %}  {% endblock %}
+    {% block content %}  {% endblock %}<br></br>
 </main>
  <footer class="page-footer">
         <div class="container">
