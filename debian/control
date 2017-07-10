@@ -1,0 +1,13 @@
+Source: canaima-propuestas
+Section: web
+Priority: standard
+Maintainer: Noel Alvarez <nalvarez@cnti.gob.ve>
+Build-Depends: debhelper (>= 9), dh-python, python-setuptools, libpq-dev, python-all-dev
+Standards-Version: 3.9.6
+Homepage: http://canaima.softwarelibre.gob.ve/
+
+Package: canaima-propuestas
+Architecture: any
+Pre-Depends: dpkg (>= 1.16.1), python2.7, ${misc:Pre-Depends}
+Depends: python-pip, nginx, gunicorn, libz-dev, libjpeg-dev, libfreetype6-dev, python-dev, python-setuptools, ${misc:Depends}
+Description: Sistema de postulacion de paquetes para Canaima GNU/Linux.

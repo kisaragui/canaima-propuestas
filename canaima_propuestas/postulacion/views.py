@@ -107,7 +107,7 @@ class PackageCreate(CreateView):
 	def post(self, request, *args, **kwargs):
 		# para que reciba el ojteto
 		self.object = self.get_object
-		# se carga la respuesta
+		# se carga la respuesta en el formulario
 		form = self.form_class(self.request.POST)
 		# se validan los datos
 		if form.is_valid():

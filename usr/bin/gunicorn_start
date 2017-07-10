@@ -1,0 +1,26 @@
+#!/bin/bash
+NAME="canaima_propuestas"                             # nombre de la aplicacion 
+DJANGODIR=/usr/lib/python2.7/dist-packages/canaima_propuestas  # directorio de la aplicacion de Django
+SOCKFILE=/var/run/gunicorn.sock  				      # socket unix, puerto como via para comunicarse 
+NUM_WORKERS=3                                         # numero de procesos que correr gunicorn
+DJANGO_SETTINGS_MODULE=canaima_propuestas.settings    # script settings de configuracion de la aplicacion de Django
+DJANGO_WSGI_MODULE=canaima_propuestas.wsgi            # nombre del script wsgi de la aplicacion de Django
+
+export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+export PYTHONPATH=$DJANGODIR:$PYTHONPATH
+
+# crear el directorio para ejecutar en caso de que no exista
+RUNDIR=$(dirname $SOCKFILE)
+test -d $RUNDIR || mkdir -p $RUNDIR
+
+# cambiando a la ruta de directorio de la aplicacion de Django
+cd $DJANGODIR
+# Ejecutando el gunicorn, pasandole los parametros:
+#   --name : nombre de la aplicacion
+#   --workers : numero de procesos
+#   --bind: el socket por el se comunicara con el nginx
+
+exec "gunicorn" ${DJANGO_WSGI_MODULE}:application \
+  --name $NAME \
+  --workers $NUM_WORKERS \
+  --bind=unix:$SOCKFILE \
