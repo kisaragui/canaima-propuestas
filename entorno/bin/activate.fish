@@ -32,7 +32,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/noel/paquetes/canaima-propuestas/entorno"
+set -gx VIRTUAL_ENV "/home/noel/paquetes/canaima-propuestas/desarrollo/canaima-propuestas/entorno"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

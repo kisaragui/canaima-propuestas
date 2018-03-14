@@ -25,7 +25,11 @@
                 <td>{{ historial.name_package }}</td>
                 <td>{{ historial.get_status_display }}</td>
             </tr>
-        {% endfor %} 
+        {% empty %}
+          <tr class="col 6 push-s6 center-align">
+          <td> Por el momento no hay ningun cambio. </td>
+          </tr>
+        {% endfor %}
           </tbody>
       </table> 
     </div>	

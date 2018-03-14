@@ -15,7 +15,6 @@ urlpatterns = [
     url(r'^captcha/', include('captcha.urls')),
     url(r'^accounts/register/$', RegistrationView.as_view(form_class=EmailycaptchaForm), name='registration_register'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
-
 ]
 
  
