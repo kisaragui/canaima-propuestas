@@ -8,14 +8,45 @@ from postulacion.forms import PackageForm, UpdateForm
 from statusSeguimiento.forms import HistorialForm, PreEvaluadorForm, ObsEvaluadorForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import messages
-import re
-from django.core.validators import RegexValidator
-from django.core.exceptions import ValidationError
+
+class PackageCreate(CreateView):
+	# crear los paquetes
+	
+	template_name="postulacion.html"
+	model = Package
+	form_class = PackageForm
+	success_url = reverse_lazy("lista")	
+	segundo_form_class = HistorialForm
+
+	# primero se crea el contexto del formulario
+	def get_context_data(self, **kwargs):
+		context = super(PackageCreate, self).get_context_data(**kwargs)
+		# en caso de que el formulario no tenga contexto lo genere vacio, para ingresar los datos
+		if "form" not in context:
+			# hace el pedido de los datos
+			context["form"] = self.form_class(self.request.GET)
+		return context
+
+	# envia las respuesta 
+	def post(self, request, *args, **kwargs):
+		# para que reciba el ojteto
+		self.object = self.get_object
+		# se carga la respuesta en el formulario
+		form = self.form_class(self.request.POST)
+		# se validan los datos
+		if form.is_valid():
+			
+			form.save()
+			# se redirige al sitio que tiene de nombre la variable "success_url" cuando el guardado sea un exito
+			return HttpResponseRedirect(self.get_success_url())
+		else:
+			# de lo contrario, devuelve el formulario
+		 	return self.render_to_response(self.get_context_data(form=form))
 
 
 class PackageDetail(DetailView):
-
-	# muestra los datos completos de los paquetes
+	# muestra un paquete detallado 
+	
 	model = Package
 	template_name = "detalle.html"	
 	
@@ -28,10 +59,10 @@ class PackageDetail(DetailView):
 		context['detalle_list'] = detallado
 		return context
 
-class PackageList(ListView):
-
+class PackageLista(ListView):
 	# lista los paquetes
-	template_name="listar.html"
+
+	template_name="lista.html"
 	model = Package
 
 	def get_context_data(self, *args, **kwargs):
@@ -41,22 +72,22 @@ class PackageList(ListView):
 			context["listado_list"] = self.model.objects.all().order_by("name_package")
 		return context
 		
-class PackageListAdmin(ListView, ProcessFormView, FormMixin):
+class ListaEvaluacion(ListView, ProcessFormView, FormMixin):
+	# lista los paquetes y muestra el formulario de evaluacion 
 
-	# lista los paquetes
-	template_name="listar_admin.html"
+	template_name="lista_evaluacion.html"
 	model = Package
 	segundo_model=PreEvaluador
 	form_class = PreEvaluadorForm
 	tercer_model=ObsEvaluador
 	segundo_form_class = ObsEvaluadorForm
-	success_url = reverse_lazy("listar_admin")
+	success_url = reverse_lazy("lista_evaluacion")
 	
 	# enviando respuesta de la pedicion para actualizar el paquete
 
 	def get_context_data(self, *args, **kwargs):
-		context = super(PackageListAdmin, self).get_context_data(**kwargs)
-		# se llmman los modelos para ser visualizados por los nombres de los paquetes
+		context = super(ListaEvaluacion, self).get_context_data(**kwargs)
+		# se llaman los modelos para ser visualizados por los nombres de los paquetes
 		obs_list= self.tercer_model.objects.all().order_by("name")
 		pre_list= self.segundo_model.objects.all().order_by("name")
 		pack_list = self.model.objects.all().order_by("name_package")
@@ -85,39 +116,6 @@ class PackageListAdmin(ListView, ProcessFormView, FormMixin):
 		else:
 			return HttpResponseRedirect(self.get_success_url())	
 
-class PackageCreate(CreateView):
-	
-	# crear los paquetes
-	template_name="postulacion.html"
-	model = Package
-	form_class = PackageForm
-	success_url = reverse_lazy("listar")	
-	segundo_form_class = HistorialForm
-
-	# primero se crea el contexto del formulario
-	def get_context_data(self, **kwargs):
-		context = super(PackageCreate, self).get_context_data(**kwargs)
-		# en caso de que el formulario no tenga contexto lo genere vacio, para ingresar los datos
-		if "form" not in context:
-			# hace el pedido de los datos
-			context["form"] = self.form_class(self.request.GET)
-		return context
-
-	# envia las respuesta 
-	def post(self, request, *args, **kwargs):
-		# para que reciba el ojteto
-		self.object = self.get_object
-		# se carga la respuesta en el formulario
-		form = self.form_class(self.request.POST)
-		# se validan los datos
-		if form.is_valid():
-			
-			form.save()
-			# se redirige al sitio que tiene de nombre la variable "success_url" cuando el guardado sea un exito
-			return HttpResponseRedirect(self.get_success_url())
-		else:
-			# de lo contrario, devuelve el formulario
-		 	return self.render_to_response(self.get_context_data(form=form))
 
 # actualiza los paquetes 
 class PackageUpdate(UpdateView):
@@ -125,7 +123,7 @@ class PackageUpdate(UpdateView):
 	model= Package
 	template_name= "editar.html"
 	form_class = PackageForm
-	success_url = reverse_lazy("listar")
+	success_url = reverse_lazy("lista")
 
 	# primero se genere el contexto del formulario
 	def get_context_data(self, **kwargs):
@@ -161,10 +159,10 @@ class PackageUpdate(UpdateView):
 			return HttpResponseRedirect(self.get_success_url())	
 
 
-class PackageListUpdate(ListView, ProcessFormView, FormMixin):
+class PackageStatusUpdate(ListView, ProcessFormView, FormMixin):
 
 	# lista los paquetes
-	template_name="listar_status_update.html"
+	template_name="lista_status_update.html"
 	model = Package
 	form_class = UpdateForm
 	
@@ -188,13 +186,13 @@ class PackageListUpdate(ListView, ProcessFormView, FormMixin):
 			else:
 				# de lo contrario guarda el formulario
 				form.save()
-				return HttpResponseRedirect(reverse_lazy("listar_todo"))
+				return HttpResponseRedirect(reverse_lazy("lista_todo"))
 
 
-			return HttpResponseRedirect(reverse_lazy("listar_status_update"))
+			return HttpResponseRedirect(reverse_lazy("lista_status_update"))
 			
 		else:
 
-			return HttpResponseRedirect(reverse_lazy("listar_todo"))
+			return HttpResponseRedirect(reverse_lazy("lista_todo"))
 
 

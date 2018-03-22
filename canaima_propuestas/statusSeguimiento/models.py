@@ -26,7 +26,7 @@ OPCION2= ((si, "Si"), (no, "No"),)
 class Historial(models.Model):
 
 	name_package = models.CharField('Nombre del Paquete', max_length=50)
-	fecha_actualizada = models.DateTimeField(default=timezone.now)
+	fecha_actualizada = models.DateTimeField(auto_now_add=True, auto_now=False)
 	status = models.CharField(max_length=10, choices=STATUS, default=evaluado)
 
 	class Meta:
