@@ -20,12 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '_4+y08=n3vq7&t!d$8=rf)blcxi*#(&_cp=i!er*l*(+m*&w$9'
+SECRET_KEY = '&w%x5%akm-#0y*u!$f9j6=#q9b8q1%c(kexqf9$94&oqasom-9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ['0.0.0.0']
 
 
 # Application definition
@@ -60,7 +60,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ os.path.join(BASE_DIR, "plantillas")],
+        'DIRS': [os.path.join(BASE_DIR, "plantillas")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -117,7 +117,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = False  
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -125,9 +125,10 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATICFILES_DIRS = (
+  os.path.join(BASE_DIR, 'estilos'), # ruta completa de los archivos estaticos en el servidor de desarrollo o produccion
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "estilos"),)
+)
 
 # One-week activation window; you may, of course, use a different value.
 
@@ -140,3 +141,4 @@ REGISTRATION_AUTO_LOGIN = True
 SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'
+

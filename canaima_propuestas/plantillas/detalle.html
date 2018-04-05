@@ -6,28 +6,42 @@
   <div class="col s6 offset-s3 center-align">
     <h3> {{ object.name_package }}</h3>
   </div>
+  <div class="container">
   <div class="row">
-    <div class="col s5 right-align">
-      <ul >
-        <li><p>id:</p></li>
-        <li><p>Repositorio:               </p></li>
-        <li><p>Nombre del paquete:       </p></li>
-        <li><p>Descripcion del paquete: </p></li>
-        <li><p>Status Actual del paquete:       </p></li>
-        <li><p>Correo Eleclionico:        </p></li>
-        <li><p>Fecha creado:              </p></li>
-      </ul>
-    </div>
-  <div class="col s7 ">
-      <ul>
-        <li><p>{{ object.id }}</p></li>
-        <li><p>{{ object.repository }}</p></li>
-        <li><p>{{ object.name_package }}</p></li>
-        <li><p>{{ object.description_package }}</p></li>
-        <li><p>{{ object.status }}</p></li>
-        <li><p>{{ object.email }}</p></li>
-        <li><p>{{ object.fecha }}</p></li>
-     </ul>
+    <div class="col s12">
+    <table class="bordered  detallar">
+    <tbody>
+        <tr>
+          <th>id:</th>
+          <td>{{ object.id }} </td>
+        </tr>
+        <tr>
+          <th>Repositorio:</th>
+          <td>{{ object.repository }}</td>
+        </tr>
+        <tr>
+          <th>Nombre del paquete:</th>
+          <td>{{ object.name_package }}</td>
+        </tr>
+        <tr>
+          <th>Status Actual del paquete:</th>
+          <td>{{ object.status }}</td>
+        </tr>
+        <tr>
+          <th>Correo Electronico:</th>
+          <td>{{ object.email }} </td>
+        </tr>
+        <tr>
+          <th>Fecha creado:</th>
+          <td>{{ object.fecha }}</td>
+        </tr>
+        <tr>
+          <th>Dueño del Paquete:</th>
+          <td>{{ object.usuario }} </td>
+        </tr>
+    </tbody>
+  </table>
+  </div>
   </div>
   </div>
 

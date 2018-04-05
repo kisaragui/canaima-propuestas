@@ -7,7 +7,8 @@ from django.core.exceptions import ValidationError
 
 class PackageForm(forms.ModelForm):
 
-	#captcha = CaptchaField()
+	captcha = CaptchaField()
+	description_package = forms.CharField(label="Descripcion del paquete")
 
 	class Meta:
 		model = Package
@@ -15,6 +16,9 @@ class PackageForm(forms.ModelForm):
 			"repository", 
 			"name_package", 
 			"description_package", 
+		]
+		exclude = [			
+			"usuario",
 			"email",
 		]
 
@@ -36,8 +40,8 @@ class EmailycaptchaForm(RegistrationFormUniqueEmail):
 	
 	pass
 
-class Captcha(forms.Form):
+#class CaptchaForm(forms.Form):
 
-	captcha = CaptchaField()
+#	captcha = CaptchaField()
 
 	

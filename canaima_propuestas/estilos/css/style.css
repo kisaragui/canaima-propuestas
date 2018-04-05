@@ -5,7 +5,7 @@
  *
  * Made By MaterializeCSS.com
  */
-
+/*-------------------------------  BARRA DE NAVEGACION  -----------------------------------*/
 nav ul a,
 nav .brand-logo {
   color: #FFFFFF;
@@ -21,6 +21,19 @@ nav ul a:hover {
     background-color: #d1c4e9;
 }
 
+.dropdown-content li > a {
+color: #5a5a5a;
+}
+sflfblwfhb
+nav i {
+ font-size: 10px;
+}
+
+nav .brand-logo {
+  left: 10px;
+  font-size: 50px;
+}
+
 p {
   line-height: 2rem;
 }
@@ -28,7 +41,7 @@ p {
 .button-collapse {
   color: #26a69a;
 }
-
+/*-------------------------------  INICIO  -----------------------------------*/
 .parallax-container {
   min-height: 380px;
   line-height: 0;
@@ -38,6 +51,26 @@ p {
   .parallax-container .section {
     width: 100%;
   }
+
+#index-banner {
+    min-height: 480px;
+    position: relative;
+    background-color: white;
+}
+
+div.center-align img{
+width: 200px; 
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
 
 @media only screen and (max-width : 992px) {
   .parallax-container .section {
@@ -61,18 +94,22 @@ p {
 .icon-block .material-icons {
   font-size: inherit;
 }
-
+/*-------------------------------  FOOTER -----------------------------------*/
 footer.page-footer {
   background-color: #622f96;
   font-weight: bold;
 }
 
-
+/*-------------------------------  TABLAS  -----------------------------------*/
 table.centrar {
 margin-left: 170px;
 width: 90%;
 }
 
+table.highlight.detallar th {
+ text-align: right;
+
+}
 .browser-default {
   border: 0;
 
@@ -81,34 +118,6 @@ width: 90%;
   background-color: #b39ddb ; 
 }
 
-#index-banner {
-    min-height: 480px;
-    position: relative;
-    background-color: white;
-}
-
-div.center-align img{
-width: 200px; 
-}
-
-nav i {
- font-size: 10px;
-}
-
-nav .brand-logo {
-  left: 10px;
-  font-size: 50px;
-}
-
-body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
-main {
-  flex: 1 0 auto;
-}
 
 @media only screen and (min-width: 993px) {
   .container {
@@ -122,18 +131,19 @@ main {
   margin-bottom: auto; 
 }
 
+
+/*-------------------------------  CAMPOS IMPUT -----------------------------------*/
 div.input-field.centrar {
   margin-top: 0px;
 
 } 
 .input-field label.etiqueta {
   left: 0px;
-
 }
 
 .input-field label.etiqueta.active {
   font-size: 0.8rem;
   -webkit-transform: translateY(-140%);
   transform: translateY(-140%);
-
 }
+
