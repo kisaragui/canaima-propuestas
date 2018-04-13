@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.conf.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
-from postulacion.forms import EmailycaptchaForm
+from postulacion.forms import UsuarioCaptchaForm
 from registration.backends.simple.views import RegistrationView
 
 urlpatterns = [
