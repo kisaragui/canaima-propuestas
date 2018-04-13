@@ -1,11 +1,10 @@
 from django.shortcuts import render
-from statusSeguimiento.models import Historial, PreEvaluador, ObsEvaluador
+from statusSeguimiento.models import Historial
 from postulacion.models import Package
 from django.views.generic import ListView, TemplateView
 from django.core.urlresolvers import reverse_lazy
-from statusSeguimiento.forms import HistorialForm, PreEvaluadorForm, ObsEvaluadorForm
+from statusSeguimiento.forms import HistorialForm
 from django.http import HttpResponseRedirect, HttpResponse
-from django.contrib import messages
 # Create your views here.
 
 class HistorialLista(ListView):

@@ -3,6 +3,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from statusSeguimiento.models import Historial, PreEvaluador, ObsEvaluador
 from django.contrib.auth.models import User
+
 # funcion para guardar datos en el modelo Historial al guardar datos en el modelo Package
 def guardar_historial(sender, instance, created, **kwargs):
 	# cargando la instancia en el modelo Historial

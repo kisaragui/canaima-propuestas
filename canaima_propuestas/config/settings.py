@@ -142,3 +142,4 @@ SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'
 
+REGISTRATION_FORM = 'postulacion.forms.UsuarioCaptchaForm'
