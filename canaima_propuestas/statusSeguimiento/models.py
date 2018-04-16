@@ -34,39 +34,4 @@ class Historial(models.Model):
 		
 	def __str__(self):
 		return '%s %s' % (self.name_package, self.status)
-
-class PreEvaluador(models.Model):
-	
-	name = models.CharField(max_length= 50, blank=True)
-	pre1 = models.BooleanField(max_length=5, choices=OPCION2, default=no)
-	pre2 = models.BooleanField(max_length=5, choices=OPCION2, default=no)
-	pre3 = models.BooleanField(max_length=5, choices=OPCION2, default=no)
-	pre4 = models.BooleanField(max_length=5, choices=OPCION2, default=no)
-	pre5 = models.BooleanField(max_length=5, choices=OPCION2, default=no)
-	pre6 = models.BooleanField(max_length=5, choices=OPCION2, default=no)
-	pre7 = models.BooleanField(max_length=5, choices=OPCION2, default=no)
-	pre8_0 = models.BooleanField("main",max_length=7, choices=OPCION2, default=no)
-	pre8_1 = models.BooleanField("contrib", max_length=7, choices=OPCION2, default=no)
-	pre8_2 = models.BooleanField("non-free",max_length=7, choices=OPCION2, default=no)
-	pre9 = models.BooleanField(max_length=5, choices=OPCION2, default=no)
-
-class ObsEvaluador(models.Model):
-	
-	name = models.CharField( max_length= 50, blank=True)
-	obs1 = models.CharField("Observaciones", max_length=200, blank=True)
-	obs2 = models.CharField("Observaciones", max_length=200, blank=True)
-	obs3 = models.CharField("Observaciones", max_length=200, blank=True)
-	obs4 = models.CharField("Observaciones", max_length=200, blank=True)
-	obs5 = models.CharField("Observaciones", max_length=200, blank=True)
-	obs6 = models.CharField("Observaciones", max_length=200, blank=True)
-	obs7 = models.CharField("Observaciones", max_length=200, blank=True)
-	obs8 = models.CharField("Observaciones", max_length=200, blank=True)
-	obs9 = models.CharField("Observaciones", max_length=200, blank=True)
-
-	
-			
-
-	
-
-
 	
