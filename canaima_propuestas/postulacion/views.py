@@ -17,7 +17,6 @@ class PackageCreate(CreateView):
 	model = Package
 	segundo_model = User
 	form_class = PackageForm
-	#segundo_form_class = CaptchaForm
 	success_url = reverse_lazy("lista")	
 	
 	# primero se crea el contexto del formulario
@@ -27,8 +26,6 @@ class PackageCreate(CreateView):
 		if "form" not in context:
 			# hace el pedido de los datos
  			context["form"] = self.form_class(self.request.GET)
- 		#if "captcha" not in context:
- 		#	context["captcha"] = self.segundo_form_class(self.request.GET)
 		return context
 
 	# envia las respuesta 

@@ -17,7 +17,7 @@ OPCION3 = (('PA', 'Paquete'), ('CF', 'Codigo-Fuente'), ('OT', 'Otro'))
 
 OPCION4 = (('USU', 'Usuario'), ('DEV', 'Desarrollador'), ('OTO', 'Otro'))
 
-class Evaluacion(models.Model):
+class CamposEvaluacion(models.Model):
 
 
 	# Seccion 1 Identificacion del paquete
@@ -27,7 +27,7 @@ class Evaluacion(models.Model):
 	tipo_llave = models.CharField(max_length=50, blank=True)
 	observacion2 = models.CharField(max_length=255, blank=True)
 	# Seccion 3 Peso del paquete
-	tipo_peso = models.CharField(choices=OPCION3, max_length=2, blank=True)
+	contenido_repo = models.CharField(choices=OPCION3, max_length=2, blank=True)
 	cantidad_paquete = models.CharField(max_length=50, blank=True)
 	cantidad_codigo = models.CharField(max_length=50, blank=True)
 	cantidad_otro = models.CharField(max_length=50, blank=True)
@@ -53,7 +53,7 @@ class Evaluacion(models.Model):
 	descripcion = models.TextField(max_length=500, blank=True)
 	# Seccion 8 Rama de desarrollo
 	rama_desarrollo = models.CharField(choices=OPCION2, max_length=8, blank=True)
-
+	observacion8 = models.CharField(max_length=255, blank=True)
 	def __str__(self):
 		return self.datos_paquete
 		

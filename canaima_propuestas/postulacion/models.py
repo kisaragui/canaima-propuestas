@@ -16,7 +16,7 @@ class Package(models.Model):
 	usuario = models.CharField(max_length=200)
 	repository = models.URLField('Direccion url del repositorio del paquete', max_length=150, unique=True)
 	name_package = models.CharField('Nombre del paquete', max_length=50)
-	description_package = models.CharField( max_length=200, unique=True)
+	description_package = models.TextField( max_length=200, unique=True)
 	status = models.CharField('Estatus del paquete', max_length=50, default='Postulado')
 	email = models.EmailField('Correo del postulador', max_length=50)
 	fecha = models.DateTimeField('fecha de creacion del paquete', auto_now_add=True, auto_now=False)

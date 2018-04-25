@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 class PackageForm(forms.ModelForm):
 
 	captcha = CaptchaField()
-	description_package = forms.CharField(label="Descripcion del paquete")
+	description_package = forms.CharField(label="Descripcion del paquete", widget=forms.Textarea(attrs={'class': 'materialize-textarea'}))
 
 	class Meta:
 		model = Package

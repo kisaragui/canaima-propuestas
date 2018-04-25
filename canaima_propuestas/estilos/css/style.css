@@ -147,3 +147,18 @@ div.input-field.centrar {
   transform: translateY(-140%);
 }
 
+/*------------------------------ CHECKBOXS --------------------------------------------*/
+
+.casilla {
+  margin-top: 10px;
+  display: inline;
+  margin-right: 20px; 
+}
+
+.check-box{
+  margin-right: 20px; 
+}
+
+.borde-negro {
+  border-bottom: 2px solid black;
+}
