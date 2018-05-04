@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django import forms
 from postulacion.forms import PackageForm
 from postulacion.models import Package
@@ -34,7 +35,7 @@ class EvaluacionForm(forms.ModelForm):
 
 	OPCION3 = (('PA', 'Paquete'), ('CF', 'Codigo-Fuente'), ('OT', 'Otro'))
 
-	OPCION4 = (('USU', 'Usuario'), ('DEV', 'Desarrollador'), ('OTO', 'Otro'))
+	OPCION4 = (('USU', 'Usuario'), ('DEV', 'Desarrollador'), ('OTRO', 'Otro'))
 	
 	# Seccion 2 llave GnuPG
 	firmado = forms.MultipleChoiceField(choices=OPCION, label='Esta firmado',widget=forms.CheckboxSelectMultiple(), required=False)
@@ -42,45 +43,42 @@ class EvaluacionForm(forms.ModelForm):
 	observacion2 = forms.CharField(label='Observaciones (opcional)', widget=forms.Textarea(attrs={'class': 'materialize-textarea'}))
 	# Seccion 3 Peso del paquete
 	contenido_repo = forms.ChoiceField(choices=OPCION3, label='Contenido del repositorio', widget=forms.Select(attrs={'class': 'browser-default'}))
-	cantidad_paquete = forms.CharField(label='Cantidad')
-	cantidad_codigo = forms.CharField(label='Cantidad')
-	cantidad_otro = forms.CharField(label='Cantidad')
+	cantidad = forms.CharField(label='Cantidad')
 	observacion3 = forms.CharField(label='Observaciones (opcional)', widget=forms.Textarea(attrs={'class': 'materialize-textarea'}))
 	# Seccion 4 Empaquetamiento
-	despcricion4 = forms.CharField(label="Descripcion del paquete", widget=forms.Textarea(attrs={'class': 'materialize-textarea'}))
+	descripcion4 = forms.CharField(label="Descripción", widget=forms.Textarea(attrs={'class': 'materialize-textarea'}))
 	# Seccion 5 Errores de lintian
-	despcricion5 = forms.CharField(label="Descripcion del paquete", widget=forms.Textarea(attrs={'class': 'materialize-textarea'}))
-	# Seccion 6 Documentacion
-	readme = forms.ChoiceField(label='Posee README.md',widget=forms.CheckboxInput)
+	descripcion5 = forms.CharField(label="Descripción", widget=forms.Textarea(attrs={'class': 'materialize-textarea'}))
+	# Seccion 6 Documentación
+	readme = forms.ChoiceField(choices=OPCION, label='Posee README.md', widget=forms.CheckboxSelectMultiple(), required=False)
 	otro_doc = forms.CharField(label='Otro Documento')
-	tipo_doc = forms.CharField(label="Orientacion de la documentacion", widget=forms.RadioSelect)
-	usu_usuario_check = forms.BooleanField(label="Caso Usuario, confirmacion de documentacion del paquete", widget=forms.CheckboxInput)
-	usu_descripcion_check = forms.BooleanField(label="Caso Usuario, confirmacion de documentacion del paquete", widget=forms.CheckboxInput)
-	dev_doc_ejecucion = forms.CharField(label="Caso desarrollador, confirmacion de documentacion del paquete")
-	lenguaje_programacion = forms.CharField(label="lenguajes de programacion")
-	dependecia_adicional = forms.ChoiceField(label="Libreria o dependencia adicional", widget=forms.CheckboxInput)
+	tipo_doc = forms.ChoiceField(choices=OPCION4, label="Orientacion de la documentacion", widget=forms.Select(attrs={'class': 'browser-default'}))
+	usu_usuario_check = forms.BooleanField(label="Usuario", required=False)
+	usu_descripcion_check = forms.BooleanField(label="Descripción", required=False)
+	dev_doc_ejecucion = forms.ChoiceField(choices=OPCION, label="Instrucciones para ejecutarse: ", widget=forms.CheckboxSelectMultiple(), required=False)
+	otro_doc_check = forms.CharField(label='Especificación')
+	lenguaje_programacion = forms.CharField(label="lenguajes de programación")
+	manual_usuario = forms.ChoiceField(choices=OPCION1, label="Posee manual de usuario", widget=forms.CheckboxSelectMultiple(), required=False)
+	otro_manual_usuario_check = forms.CharField(label='Especificación')
+	dependecia_adicional = forms.ChoiceField(choices=OPCION, label="Libreria o dependencia adicional", widget=forms.CheckboxSelectMultiple(), required=False)
 	dependecia_adicional_descripcion = forms.CharField(label="Describa (en caso si)", widget=forms.Textarea(attrs={'class': 'materialize-textarea'}))
-	manual_usuario = forms.ChoiceField(label="Posee manual de usuario")
 	observacion6 = forms.CharField(label='Observaciones (opcional)', widget=forms.Textarea(attrs={'class': 'materialize-textarea'}))
 	# Seccion 7 Comando maliciosos
-	comando_mal = forms.CharField(label="En rasgos generales  posee comando maliciosos o poco comunes", widget=forms.CheckboxInput)
-	descripcion = forms.CharField(label='Describa (en caso si)', widget=forms.Textarea(attrs={'class': 'materialize-textarea'}))
+	comando_mal = forms.ChoiceField(choices=OPCION, label="En rasgos generales, posee comando malicioso o poco comunes", widget=forms.CheckboxSelectMultiple(), required=False)
+	descripcion7 = forms.CharField(label='Describa (en caso si)', widget=forms.Textarea(attrs={'class': 'materialize-textarea'}))
 	# Seccion 8 Rama de desarrollo
-	rama_desarrollo = forms.CharField(label="Rama de desarrollo sugerida", widget=forms.CheckboxInput)	
+	rama_desarrollo = forms.ChoiceField(choices=OPCION2, label="Rama de desarrollo sugerida", widget=forms.CheckboxSelectMultiple(), required=False)	
 	observacion8 = forms.CharField(label='Observaciones (opcional)', widget=forms.Textarea(attrs={'class': 'materialize-textarea'}))
 
 	class Meta:
 
 		model = CamposEvaluacion
 		fields = [
-			#"datos_paquete",
 			"firmado",
 			"tipo_llave",
 			"observacion2",
 			"contenido_repo",
-			"cantidad_paquete",
-			"cantidad_codigo",
-			"cantidad_otro",
+			"cantidad",
 			"observacion3",
 			"despcricion4",
 			"despcricion5",
@@ -89,11 +87,13 @@ class EvaluacionForm(forms.ModelForm):
 			"tipo_doc",
 			"usu_usuario_check",
 			"usu_descripcion_check",
+			"otro_doc_check",
 			"dev_doc_ejecucion",
 			"lenguaje_programacion",
 			"dependecia_adicional",
 			"dependecia_adicional_descripcion",
 			"manual_usuario",
+			"otro_manual_usuario_check",
 			"observacion6",
 			"comando_mal",
 			"descripcion",

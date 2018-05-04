@@ -21,3 +21,23 @@ $('#js-captcha-refresh').click(function(){
 
 	return false;
 });
+
+
+$(document).ready(function() {
+  $('#id_tipo_doc').bind('change', function(e) {
+    if ($('#id_tipo_doc').val() == 'USU') {
+      $("#caso_usuario").show();
+      $("#caso_desarrollador").hide();
+      $("#caso_otro").hide();
+    } else if ($('#id_tipo_doc').val() == 'DEV') {
+      $("#caso_usuario").hide();
+      $("#caso_desarrollador").show();
+      $("#caso_otro").hide();
+    } else if ($('#id_tipo_doc').val() == 'OTRO') {
+      $("#caso_usuario").hide();
+      $("#caso_desarrollador").hide();
+      $("#caso_otro").show();
+    }
+  }).trigger('change');
+
+});

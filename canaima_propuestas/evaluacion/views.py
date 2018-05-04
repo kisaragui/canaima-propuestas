@@ -11,17 +11,20 @@ from postulacion.forms import PackageForm, UpdateForm
 from statusSeguimiento.forms import HistorialForm
 from django.http import HttpResponseRedirect, HttpResponse
 from evaluacion.models import CamposEvaluacion
-from evaluacion.forms import EvaluacionForm
+from evaluacion.forms import EvaluacionForm, PackageNoEditableForm
 
 class ListaEvaluacion(CreateView):
 
 	model = CamposEvaluacion
+	segundo_model= Package
 	form_class = EvaluacionForm
+	segundo_form_class = PackageNoEditableForm
 	success_url = reverse_lazy("lista_evaluacion")
 	template_name="lista_evaluacion2.html"
 
 	def get_context_data(self, **kwargs):
 		context = super(ListaEvaluacion, self).get_context_data(**kwargs)
+		context["form2"] = self.segundo_form_class(self.request.GET)
 		# en caso de que el formulario no tenga contexto lo genere vacio, para ingresar los datos
 		if "form" not in context:
 			# hace el pedido de los datos
