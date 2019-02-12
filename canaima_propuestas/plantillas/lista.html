@@ -1,0 +1,41 @@
+  {% extends "plantilla.html" %} 
+
+{% block title %} Paquetes Postulados {% endblock %}
+
+  {% block content %} 
+  <div class="col s6 offset-s3 center-align">
+      <h3> listado de paquetes</h3>
+  </div>
+  <div class="row">
+    <div class="col s10 offset-1" >
+  	  <table class="bordered highlight centrar" >
+          <thead> 
+            	<tr>
+                <th data-field="name">fecha de publicacion</th> 
+                <th data-field="name">Repositorio</th>
+                <th data-field="name">Nombre</th>
+                <th data-field="name">Status Actual</th>
+            	</tr>
+          </thead>
+          <tbody>
+      	{% for package in listado_list %}
+            <tr>
+                <td><a href="{% url 'detalle' pk=package.id %}">
+                {{ package.fecha }}</a></td>
+                <td><a href="{% url 'detalle' pk=package.id %}">
+                {{ package.repository }}</a></td>
+                <td><a href="{% url 'detalle' pk=package.id %}">
+                {{ package.name_package }}</a></td>
+                <td><a href="{% url 'detalle' pk=package.id %}">
+                {{ package.status }}</a></td>
+            </tr>
+           {% empty %}
+          <tr class="col 6 push-s6 center-align">
+          <td> Por el momento no se han postulado ningun paquete </td>
+          </tr>
+        {% endfor %} 
+          </tbody>
+      </table> 
+    </div>	
+  </div>
+  {% endblock %}

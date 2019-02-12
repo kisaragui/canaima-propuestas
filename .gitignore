@@ -1,0 +1,4 @@
+#Python
+*.pyc
+db.sqlite3
+entorno/

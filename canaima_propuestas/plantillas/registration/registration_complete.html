@@ -1,0 +1,23 @@
+{% extends "plantilla.html" %} 
+{% load i18n %}
+
+{% block title %}{% trans "Registro exitoso" %}{% endblock %}
+
+{% block content %}
+
+<div class="row">
+	<div class="col s6 offset-s3 center-align">
+			<br><h5>{% trans "Su usuario ha sido registrado con exito." %}</h5><br>
+	</div>
+</div>	
+{% endblock %}
+
+
+{% comment %}
+**registration/registration_complete.html**
+
+Used after successful completion of the registration form. This
+template has no context variables of its own, and should simply inform
+the user that an email containing account-activation information has
+been sent.
+{% endcomment %}

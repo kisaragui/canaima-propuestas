@@ -1,0 +1,74 @@
+  {% extends "plantilla.html" %} 
+
+{% block title %} Listado {% endblock %}
+
+{% block content %} 
+  <div class="col s6 offset-s3 center-align">
+    <h3> {{ object.name_package }}</h3>
+  </div>
+  <div class="container">
+  <div class="row">
+    <div class="col s12">
+    <table class="bordered  detallar">
+    <tbody>
+        <tr>
+          <th>id:</th>
+          <td>{{ object.id }} </td>
+        </tr>
+        <tr>
+          <th>Repositorio:</th>
+          <td>{{ object.repository }}</td>
+        </tr>
+        <tr>
+          <th>Nombre del paquete:</th>
+          <td>{{ object.name_package }}</td>
+        </tr>
+        <tr>
+          <th>Status Actual del paquete:</th>
+          <td>{{ object.status }}</td>
+        </tr>
+        <tr>
+          <th>Correo Electronico:</th>
+          <td>{{ object.email }} </td>
+        </tr>
+        <tr>
+          <th>Fecha creado:</th>
+          <td>{{ object.fecha }}</td>
+        </tr>
+        <tr>
+          <th>Dueño del Paquete:</th>
+          <td>{{ object.usuario }} </td>
+        </tr>
+    </tbody>
+  </table>
+  </div>
+  </div>
+  </div>
+
+  <div class="col s6 offset-s3 center-align">
+    <h3> Historial del {{ object.name_package }}</h3>
+  </div>
+  <div>
+  <div class="row">
+    <div class="col s10 offset-1" >
+    <table class="bordered highlight centrar" >
+      <thead> 
+        <tr>
+          <th data-field="name">Fecha de actualizacion</th> 
+          <th data-field="name">Nombre</th>
+          <th data-field="name">Ultimo status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for lista in detalle_list %}
+            <tr>
+                <td>{{ lista.fecha_actualizada }}</td>
+                <td>{{ lista.name_package }}</td>
+                <td>{{ lista.get_status_display }}</td>
+            </tr>
+        {% endfor %} 
+      </tbody>
+    </table> 
+    </div>  
+  </div>
+{% endblock %}
